@@ -6,11 +6,12 @@
 }
 
 .promo__title {
-  width: 60%;
+  width: 55%;
   font-weight: 400;
   font-size: 40px;
   line-height: 1.3;
   margin: 0;
+  letter-spacing: -0.04em;
 }
 
 .promo__image {
