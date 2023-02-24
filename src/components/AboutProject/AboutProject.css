@@ -1,3 +1,81 @@
 .aboutproject {
   width: 89%;
+  margin: 110px auto 141px;
+}
+
+.aboutproject__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.23;
+  letter-spacing: -0.04em;
+  margin: 0;
+  padding: 0 0 23px;
+  border-bottom: 1px solid;
+}
+
+.aboutproject__container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 70px 0 0;
+}
+
+.aboutproject__column {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.aboutproject__subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.aboutproject__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.aboutproject__progress {
+  width: 100%;
+  margin: 110px 0 0;
+  display: flex;
+}
+
+.aboutproject__progress-item {
+  position: relative;
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.aboutproject__progress-item:last-child {
+  width: 80%;
+  background-color: #F2F2F2;
+  color: #000000;
+}
+
+.aboutproject__progress-weeks {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.aboutproject__progress-definition {
+  position: absolute;
+  bottom: -33px;
+  color: #A0A0A0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
 }
