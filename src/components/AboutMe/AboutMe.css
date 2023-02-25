@@ -38,12 +38,17 @@
   grid-row: 5 / 6;
 }
 
+.aboutme__link-wrapper {
+  grid-column: 1 / 2;
+  grid-row: 7 / 8;
+}
+
 .aboutme__link {
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
-  grid-column: 1 / 2;
-  grid-row: 7 / 8;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .aboutme__avatar {
@@ -52,4 +57,40 @@
   object-fit: cover;
   grid-column: 2 / 3;
   grid-row: 1 / 8;
+}
+
+.aboutme__portfolio {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.11;
+  margin: 0 0 30px;
+  color: #A0A0A0;
+}
+
+.aboutme__portfolio-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 19px;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.aboutme__portfolio-wrapper:last-child {
+  padding: 0;
+  border: none;
+}
+
+.aboutme__portfolio-site {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.67;
+  margin: 20px 0 0;
+}
+
+.aboutme__portfolio-arrow {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 2;
+  margin: 10px 0 0;
+  text-decoration: none;
+  color: #000000;
 }
