@@ -11,19 +11,6 @@ function AboutMe() {
       <div className='aboutme__link-wrapper'><a className='aboutme__link' href='https://github.com/apant94'>Github</a></div>
       <img className='aboutme__avatar' src='https://i.ibb.co/58cfZDY/photo-2022-09-17-18-25-57.jpg' alt='Фото меня' />
     </div>
-    <h3 className='aboutme__portfolio'>Портфолио</h3>
-    <div className='aboutme__portfolio-wrapper'>
-      <p className='aboutme__portfolio-site'>Статичный сайт</p>
-      <a className='aboutme__portfolio-arrow' href='https://apant94.github.io/how-to-learn/'>↗</a>
-    </div>
-    <div className='aboutme__portfolio-wrapper'>
-      <p className='aboutme__portfolio-site'>Адаптивный сайт</p>
-      <a className='aboutme__portfolio-arrow' href='https://apant94.github.io/russian-travel/'>↗</a>
-    </div>
-    <div className='aboutme__portfolio-wrapper'>
-      <p className='aboutme__portfolio-site'>Одностраничное приложение</p>
-      <a className='aboutme__portfolio-arrow' href='https://apant94.github.io/react-mesto-auth/'>↗</a>
-    </div>
   </section>
   );
 }
