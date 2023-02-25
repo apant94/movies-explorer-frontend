@@ -10,16 +10,6 @@
   padding: 100px 0;;
 }
 
-.techs__title {
-  margin: 0;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.23;
-  letter-spacing: -0.04em;
-  padding: 0 0 23px;
-  border-bottom: 1px solid #000000;
-}
-
 .techs__subtitle {
   font-weight: 400;
   font-size: 50px;
