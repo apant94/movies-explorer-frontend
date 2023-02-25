@@ -31,8 +31,8 @@
 .techs__blocks {
   align-self: center;
   display: flex;
-  justify-content: space-between;
-  width: 60%;
+  justify-content: center;
+  gap: 10px;
 }
 
 .techs__block {
