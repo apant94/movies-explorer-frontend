@@ -1,9 +1,9 @@
 import './MoviesCard.css';
-import MoviePath from '../../images/moviescard-image.jpg';
 import { useState } from 'react';
+import MoviePath from '../../images/moviescard-image.jpg';
 
 function MoviesCard() {
-  const {isLiked, setIsLiked} = useState(false);
+  const [ isLiked, setIsLiked ] = useState(false);
 
   const cardLikeButtonClassName = (
     `moviescard__like ${isLiked ? 'moviescard__like_active' : 'moviescard__like'}`
@@ -11,7 +11,7 @@ function MoviesCard() {
 
   function handleLikeClick(e) {
     e.preventDefault();
-    setIsLiked(true);
+    e.target.classList.toggle('moviescard__like_active');
   }
 
   return(
