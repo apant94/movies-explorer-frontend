@@ -1,0 +1,5 @@
+.movieslist {
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+}
