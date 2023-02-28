@@ -1,0 +1,11 @@
+.profile {
+  flex: 1 0 auto;
+  width: 89%;
+  margin: 0 auto;
+}
+
+.profile__greetings {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.18;
+}

@@ -1,9 +1,10 @@
 .footer {
   width: 89%;
-  margin: 79px auto 0;
+  margin: 79px auto 20px;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.23;
+  flex: 0 0 auto;
 }
 
 .footer__description {
