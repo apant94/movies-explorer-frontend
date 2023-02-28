@@ -13,7 +13,9 @@ function Profile() {
           <label for='email' className='profile__input-label'>E-mail</label>
           <input className='profile__input' name='email' type='text' value='pochta@yandex.ru' />
         </div>
+        <button type='submit' className='profile__edit-btn'>Редактировать</button>
       </form>
+      <button to type='button' className='profile__exit-btn'>Выйти из аккаунта</button>
     </main>
   )
 }

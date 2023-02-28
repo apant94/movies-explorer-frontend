@@ -8,6 +8,7 @@ html, body {
 
 .page {
   max-width: 1280px;
+  min-width: 320px;
   margin: 0 auto;
   color: #000000;
   font-family: "Inter", "Arial", "Helvetica", sans-serif;

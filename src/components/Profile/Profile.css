@@ -50,3 +50,28 @@
   z-index: 2;
   width: 141px;
 }
+
+.profile__edit-btn {
+  margin: 220px auto 16px;
+  background-color: transparent;
+  border: none;
+  width: max-content;
+  height: max-content;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+}
+
+.profile__exit-btn {
+  background-color: transparent;
+  border: none;
+  width: max-content;
+  height: max-content;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+  margin: 0 auto;
+  color: #FF4062;
+}
