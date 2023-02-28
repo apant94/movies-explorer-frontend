@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import NavTab from '../NavTab/NavTab';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/movies" element={<Movies />} />
+      <Route path='/saved-movies' element={<SavedMovies />} />
     </Routes>
     <Footer />
     </div>
