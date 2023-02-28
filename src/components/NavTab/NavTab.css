@@ -1,0 +1,77 @@
+.navtab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+.navtab__logo {
+  width: 38px;
+  height: 38px;
+}
+
+.navtab__auth-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navtab__auth-signup {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-decoration: none;
+  color: #000000;
+}
+
+.navtab__auth-signin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 32px;
+  background-color: #000000;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.navtab__movies-wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.navtab__movies {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+  color: #000000;
+  text-decoration: none;
+}
+
+.navtab__movies:first-child {
+  font-weight: 500;
+}
+
+.navtab__profile-wrapper {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+}
+
+.navtab__profile {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  color: #000000;
+  text-decoration: none;
+}
+
+.navtab__profile-icon {
+  width: 10px;
+  height: 11px;
+}

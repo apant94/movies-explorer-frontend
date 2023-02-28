@@ -1,8 +1,7 @@
 import './Header.css';
-import { useLocation, Link } from 'react-router-dom';
-import LogoPath from '../../images/header-logo.svg';
+import { useLocation } from 'react-router-dom';
 
-function Header() {
+function Header({children}) {
   const {pathname} = useLocation();
 
   const mainHeaderStyle = {
@@ -18,15 +17,11 @@ function Header() {
     {
       pathname === '/' ? (
     <header className='header' style={mainHeaderStyle}>
-      <Link to='/'>
-        <img className='header__logo' src={LogoPath} alt='Логотип' />
-      </Link>
+      {children}
     </header>
     ) : 
     (<header className='header' style={headerStyle}>
-      <Link to='/'>
-        <img className='header__logo' src={LogoPath} alt='Логотип' />
-      </Link>
+      {children}
     </header>)
     }
     </>
