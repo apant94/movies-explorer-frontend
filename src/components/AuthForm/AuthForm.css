@@ -20,3 +20,17 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.authform__submit {
+  height: 45px;
+  background: #000000;
+  border-radius: 3px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+}
