@@ -1,6 +1,7 @@
 import './Profile.css';
 
-function Profile() {
+function Profile({logout}) {
+
   return(
     <main className='profile'>
       <h2 className='profile__greetings'>Привет, Виталий!</h2>
@@ -15,7 +16,7 @@ function Profile() {
         </div>
         <button type='submit' className='profile__edit-btn'>Редактировать</button>
       </form>
-      <button to type='button' className='profile__exit-btn'>Выйти из аккаунта</button>
+      <button to type='button' className='profile__exit-btn' onClick={logout}>Выйти из аккаунта</button>
     </main>
   )
 }

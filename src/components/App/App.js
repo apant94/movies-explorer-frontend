@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 import Header from '../Header/Header';
 import NavTab from '../NavTab/NavTab';
 import Register from '../Register/Register';
@@ -12,12 +13,20 @@ import Footer from '../Footer/Footer';
 function App() {
   const navigate = useNavigate();
 
+  const[loggedIn, setLoggedIn] = useState(false);
+
   function registration() {
     navigate('/signin');
   }
 
   function authorization() {
     navigate('/movies');
+    setLoggedIn(true);
+  }
+
+  function logout() {
+    setLoggedIn(false);
+    navigate('/');
   }
 
   return (
@@ -31,7 +40,7 @@ function App() {
       <Route path='/' element={<Main />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/saved-movies' element={<Movies />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route path='/profile' element={<Profile logout={logout} />} />
     </Routes>
     <Footer />
     </div>
