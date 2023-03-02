@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from '../Header/Header';
 import NavTab from '../NavTab/NavTab';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
@@ -22,6 +23,7 @@ function App() {
     </Header>
     <Routes>
       <Route path='/signup' element={<Register registration={registration} />} />
+      <Route path='/signin' element={<Login />} />
       <Route path='/' element={<Main />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/saved-movies' element={<Movies />} />
