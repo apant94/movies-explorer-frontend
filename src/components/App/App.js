@@ -16,6 +16,10 @@ function App() {
     navigate('/signin');
   }
 
+  function authorization() {
+    navigate('/movies');
+  }
+
   return (
     <div className="page">
     <Header>
@@ -23,7 +27,7 @@ function App() {
     </Header>
     <Routes>
       <Route path='/signup' element={<Register registration={registration} />} />
-      <Route path='/signin' element={<Login />} />
+      <Route path='/signin' element={<Login authorization={authorization} />} />
       <Route path='/' element={<Main />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/saved-movies' element={<Movies />} />
