@@ -9,9 +9,9 @@ function AuthForm({greetings, children, submitText, onSubmit}) {
         <img src={LogoPath} alt='Логотип' className='authform__logo' />
       </Link>
       <h2 className='authform__greetings'>{greetings}</h2>
-      <form className='authform__element' noValidate>
+      <form className='authform__element' onSubmit={onSubmit} >
         {children}
-        <button className='authform__submit' type='submit' onSubmit={onSubmit}>{submitText}</button>
+        <button className='authform__submit' type='submit'>{submitText}</button>
       </form>
     </div>
   )
