@@ -1,10 +1,9 @@
 import './NavTab.css';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LogoPath from '../../images/header-logo.svg';
 import IconPath from '../../images/header-profile-icon.svg';
 
 function NavTab({loggedIn}) {
-  const {pathname} = useLocation();
   return(
     <nav className='navtab'>
       <Link to='/'>
