@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="page">
     <Header>
-      <NavTab />
+      <NavTab loggedIn={loggedIn} />
     </Header>
     <Routes>
       <Route path='/signup' element={<Register registration={registration} />} />
