@@ -8,6 +8,7 @@ import Login from '../Login/Login';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
+import NotFoundError from '../NotFoundError/NotFoundError';
 import Footer from '../Footer/Footer';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       <Route path='/movies' element={<Movies />} />
       <Route path='/saved-movies' element={<Movies />} />
       <Route path='/profile' element={<Profile logout={logout} />} />
+      <Route path='/*' element={<NotFoundError />} />
     </Routes>
     <Footer />
     </div>
