@@ -3,6 +3,13 @@
   margin: 110px auto 141px;
 }
 
+@media screen and (max-width: 768px) {
+  .aboutproject {
+    width: 87%;
+    margin: 90px auto 121px;
+  }
+}
+
 .aboutproject__container {
   display: flex;
   justify-content: space-between;
