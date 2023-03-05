@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .authinput__label {
@@ -18,6 +17,7 @@
   border-radius: 8px;
   border: none;
   padding: 15px;
+  margin: 10px 0 0;
 }
 
 .authinput__error {
@@ -25,6 +25,5 @@
   font-size: 10px;
   line-height: 1.2;
   color: #FF4062;
-  height: 12px;
-
+  margin: 10px 0 0;
 }

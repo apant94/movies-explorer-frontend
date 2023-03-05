@@ -18,7 +18,7 @@
 .authform__element {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .authform__submit {
@@ -34,4 +34,5 @@
   align-items: center;
   color: #FFFFFF;
   cursor: pointer;
+  margin: 10px 0 0;
 }
