@@ -3,6 +3,12 @@
   margin: 0 auto 0;
 }
 
+@media screen and (max-width: 768px) {
+  .portfolio {
+    width: 87%;
+  }
+}
+
 .portfolio__title {
   font-weight: 400;
   font-size: 18px;
@@ -28,6 +34,14 @@
   font-size: 30px;
   line-height: 1.67;
   margin: 20px 0 0;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio__site {
+    font-size: 28px;
+    line-height: 1.79;
+  }
 }
 
 .portfolio__arrow {
@@ -37,4 +51,12 @@
   margin: 10px 0 0;
   text-decoration: none;
   color: #000000;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio__arrow {
+    font-size: 28px;
+    line-height: 2.14;
+  }
 }
