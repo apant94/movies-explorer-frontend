@@ -31,7 +31,7 @@ function Login({authorization}) {
         <AuthInput title={'E-mail'} type={'email'} value={email} required onChange={handleSetEmail} />
         <AuthInput title={'Пароль'} type={'password'} value={password} required onChange={handleSetPassword} />
       </AuthForm>
-      <p className='register__text'>Ещё не зарегистрированы? <Link to={'/signup'} className='register__link'>Регистрация</Link></p>
+      <p className='login__text'>Ещё не зарегистрированы? <Link to={'/signup'} className='login__link'>Регистрация</Link></p>
     </>
   )
 }
