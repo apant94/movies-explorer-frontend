@@ -3,11 +3,25 @@
   margin: 110px auto 101px;
 }
 
+@media screen and (max-width: 768px) {
+  .aboutme {
+    width: 87%;
+    margin: 90px auto;
+  }
+}
+
 .aboutme__profile-container {
-  margin: 66px 0 101px;
+  margin: 66px 0 0;
   display: grid;
   grid-template-rows: 58px 18px 20px 26px min-content 55px 17px;
   column-gap: 23.7%;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutme__profile-container {
+    grid-template-rows: 40px 16px 18px 20px min-content 51px 17px;
+    column-gap: 7.3%;
+  }
 }
 
 .aboutme__name {
@@ -20,6 +34,13 @@
   margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .aboutme__name {
+    font-size: 40px;
+    line-height: 1;
+  }
+}
+
 .aboutme__definition {
   font-weight: 500;
   font-size: 18px;
@@ -29,6 +50,13 @@
   margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .aboutme__definition {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
 .aboutme__text {
   font-weight: 400;
   font-size: 14px;
@@ -36,6 +64,13 @@
   margin: 0;
   grid-column: 1 / 2;
   grid-row: 5 / 6;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutme__text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
 }
 
 .aboutme__link-wrapper {
@@ -49,6 +84,7 @@
   line-height: 1.21;
   text-decoration: none;
   cursor: pointer;
+  color: #000000;
 }
 
 .aboutme__avatar {
@@ -57,4 +93,12 @@
   object-fit: cover;
   grid-column: 2 / 3;
   grid-row: 1 / 8;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutme__avatar {
+    width: 255px;
+    height: 307px;
+  }
 }
