@@ -14,6 +14,12 @@
   line-height: 1.21;
 }
 
+@media screen and (min-width: 768px) {
+  .profile__greetings {
+    margin: 236px 0 96px;
+  }
+}
+
 .profile__form {
   display: flex;
   flex-direction: column;
@@ -61,6 +67,12 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 1.23;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__edit-btn {
+    margin: 210px auto 16px;
+  }
 }
 
 .profile__exit-btn {
