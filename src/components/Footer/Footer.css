@@ -7,18 +7,25 @@
   flex: 0 0 auto;
 }
 
+@media screen and (max-width: 768px) {
+  .footer {
+    width: 87%;
+  }
+}
+
 .footer__description {
   text-align: center;
   padding: 0 0 20px;
   border-bottom: 1px solid #E8E8E8;
   color: #A0A0A0;
+  margin: 0;
   
 }
 
 .footer__container {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 20px;
+  margin: 20px 0;
 }
 
 .footer__copyright {
@@ -36,4 +43,5 @@
 .footer__link-item {
   text-decoration: none;
   cursor: pointer;
+  color: #000000;
 }

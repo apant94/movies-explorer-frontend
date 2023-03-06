@@ -1,11 +1,13 @@
 .portfolio {
   width: 89%;
-  margin: 0 auto 0;
+  margin: 0 auto 125px;
 }
 
 @media screen and (max-width: 768px) {
   .portfolio {
     width: 87%;
+    margin: 0 auto 90px;
+
   }
 }
 
