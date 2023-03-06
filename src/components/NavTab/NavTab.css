@@ -11,6 +11,169 @@
   height: 38px;
 }
 
+.navtab__movies-wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .navtab__movies-wrapper {
+      display: none;
+  }
+}
+
+.navtab__movies {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+  color: #000000;
+  text-decoration: none;
+}
+
+.navtab__movies:first-child {
+  font-weight: 500;
+}
+
+.navtab__profile-wrapper {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .navtab__profile-wrapper {
+      display: none;
+  }
+}
+
+.navtab__profile {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  color: #000000;
+  text-decoration: none;
+}
+
+.navtab__profile-icon {
+  width: 10px;
+  height: 11px;
+}
+
+
+@media screen and (min-width: 769px) {
+  .navtab__hamburger {
+      display: none;
+      justify-content: flex-end;
+      justify-self:end;
+  }
+}
+
+.navtab__hamburger-btn {
+  width: 44px;
+	height: 44px;
+	position: relative;
+	z-index: 6;
+	overflow: hidden;
+  cursor: pointer;
+}
+
+.navtab__hamburger-bar {
+  width: 28px;
+	height: 3px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #000000;
+	transition: all 0.3s ease-in-out;
+}
+
+.navtab__hamburger-bar:nth-child(2) {
+	top: calc(50% - 10px);
+}
+.navtab__hamburger-bar:nth-child(3) {
+	top: calc(50% + 10px);
+}
+
+.navtab__hamburger-btn_active .navtab__hamburger-bar:nth-child(1) {
+  display: none;
+}
+
+.navtab__hamburger-btn_active .navtab__hamburger-bar:nth-child(2) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(45deg);
+}
+
+.navtab__hamburger-btn_active .navtab__hamburger-bar:nth-child(3) {
+  top: 50%;
+  transform: translate(-50%, 0%) rotate(-45deg);
+}
+
+.navtab__hamburger-nav {
+  position: fixed;
+	top: 0;
+	right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000000;
+  opacity: 0.3;
+	transition-duration: .25s;
+  visibility: hidden;
+  z-index: 3;
+}
+
+.navtab__hamburger-nav_active {
+  position: fixed;
+	top: 0;
+	right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000000;
+  opacity: 0.3;
+	transition-duration: .25s;
+  visibility: visible;
+  z-index: 3;
+}
+
+.navtab__hamburger-list {
+  position: fixed;
+  background: #FFFFFF;
+  width: 520px;
+  height: 100%;
+  top: 0;
+	right: -100%;
+  margin: 0;
+  z-index: 4;
+  display: block;
+  transition-duration: .25s;
+  visibility: hidden;
+  padding: 159px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navtab__hamburger-list_active {
+  right: 0;
+  visibility: visible;
+}
+
+.navtab__hamburger-item {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #000000;
+  margin: 0 0 28px;
+}
+
+.navtab__hamburger-wrapper {
+  margin: 621px 0 0;
+  display: flex;
+  gap: 23px;
+}
+
 .navtab__auth-wrapper {
   display: flex;
   gap: 30px;
@@ -37,41 +200,4 @@
   line-height: 1.33;
   text-decoration: none;
   color: #FFFFFF;
-}
-
-.navtab__movies-wrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.navtab__movies {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.38;
-  color: #000000;
-  text-decoration: none;
-}
-
-.navtab__movies:first-child {
-  font-weight: 500;
-}
-
-.navtab__profile-wrapper {
-  display: flex;
-  gap: 23px;
-  align-items: center;
-}
-
-.navtab__profile {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.14;
-  color: #000000;
-  text-decoration: none;
-}
-
-.navtab__profile-icon {
-  width: 10px;
-  height: 11px;
 }
