@@ -23,6 +23,12 @@
   color: #A0A0A0;
 }
 
+@media screen and (max-width: 1024px) {
+  .search__input {
+    width: 89%;
+  }
+}
+
 .search__submit {
   width: 6%;
   border: none;
@@ -32,6 +38,12 @@
   font-size: 12px;
   line-height: 1.5;
   color: #FFFFFF;
+}
+
+@media screen and (max-width: 1024px) {
+  .search__submit {
+    width: 10.5%;
+  }
 }
 
 .search__wrapper {
