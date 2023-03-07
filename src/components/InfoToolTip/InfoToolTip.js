@@ -1,8 +1,8 @@
 import './InfoTooltip.css';
 
-function InfoTooltip({ onClose, isOpen, isAuthOk }) {
+function InfoTooltip({ onClose, isOpen, isSubmitOk, data }) {
   return (
-    <div className={`popup popup_tooltip ${isOpen ? "popup_opened" : ""}`}>
+    <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__tooltip-container">
         <button
           type="button"
@@ -10,11 +10,11 @@ function InfoTooltip({ onClose, isOpen, isAuthOk }) {
           onClick={onClose}
         ></button>
         <div
-          className={isAuthOk ? "popup__tooltip-icon" : "popup__tooltip-icon_error"}
+          className={isSubmitOk ? "popup__tooltip-icon" : "popup__tooltip-icon_error"}
         ></div>
         <p className="popup__tooltip-text">
-          {isAuthOk
-            ? "Вы успешно зарегистрировались!"
+          {isSubmitOk
+            ? `${data.text}`
             : "Что-то пошло не так! Попробуйте ещё раз."}
         </p>
       </div>
