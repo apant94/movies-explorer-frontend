@@ -5,11 +5,23 @@
   height: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .notfounderror {
+    height: auto;
+  }
+}
+
 .notfounderror__status {
   font-weight: 400;
   font-size: 140px;
   line-height: 1.21;
   margin: 246px auto 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .notfounderror__status {
+    margin: 408px auto 5px;
+  }
 }
 
 .notfounderror__message {
@@ -25,4 +37,10 @@
   margin: auto auto 60px;
   text-decoration: none;
   color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .notfounderror__link {
+    margin: 184px auto 222px;
+  }
 }
