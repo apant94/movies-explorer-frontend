@@ -24,10 +24,26 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .notfounderror__status {
+    margin: 329px auto 10px;
+    font-size: 80px;
+  line-height: 1.21;
+  }
+}
+
 .notfounderror__message {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.19;
+}
+
+@media screen and (max-width: 480px) {
+  .notfounderror__message {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+  }
 }
 
 .notfounderror__link {
@@ -42,5 +58,11 @@
 @media screen and (max-width: 768px) {
   .notfounderror__link {
     margin: 184px auto 222px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notfounderror__link {
+    margin: 284px auto 30px;
   }
 }
