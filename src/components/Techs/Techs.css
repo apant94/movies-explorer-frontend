@@ -2,18 +2,32 @@
   background-color: #F5F5F5;
 }
 
+@media screen and (max-width: 480px) {
+  .techs {
+    background-color: #FFFFFF;
+  }
+}
+
 .techs__container {
   display: flex;
   flex-direction: column;
   width: 89%;
   margin: 0 auto;
-  padding: 100px 0;;
+  padding: 100px 0;
 }
 
 @media screen and (max-width: 768px) {
   .techs__container {
     width: 87%;
     padding: 90px 0;;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .techs__container {
+    width: 89%;
+    margin: 70px auto;
+    padding: 0;
   }
 }
 
@@ -28,6 +42,14 @@
 @media screen and (max-width: 768px) {
   .techs__subtitle {
     margin: 80px auto 22px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .techs__subtitle {
+    margin: 60px auto 24px;
+    font-size: 30px;
+    line-height: 1.2;
   }
 }
 
@@ -50,16 +72,33 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .techs__definition {
+    margin: 0 auto 50px;
+    width: 90%;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+}
+
 .techs__blocks {
   align-self: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin: 0 auto;
   gap: 10px;
 }
 
 @media screen and (max-width: 768px) {
   .techs__blocks {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .techs__blocks {
+    max-width: 178px;
+    flex-wrap: wrap;
   }
 }
 
