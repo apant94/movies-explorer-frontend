@@ -7,6 +7,14 @@
   margin: 16px 0 0;
 }
 
+@media screen and (max-width: 480px) {
+  .login__text {
+    font-size: 12px;
+    line-height: 1.25;
+    margin: 14px 0 30px;
+  }
+}
+
 .login__link {
   color: #000000;
   text-decoration: none;
