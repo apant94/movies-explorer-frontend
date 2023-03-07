@@ -78,6 +78,13 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 480px) {
+  .navtab__hamburger-btn {
+    width: 40px;
+    height: 43px;
+  }
+}
+
 .navtab__hamburger-bar {
   width: 28px;
 	height: 3px;
@@ -154,6 +161,12 @@
   align-items: center;
 }
 
+@media screen and (max-width: 480px) {
+  .navtab__hamburger-list {
+    width: 100%;
+  }
+}
+
 .navtab__hamburger-list_active {
   right: 0;
   visibility: visible;
@@ -168,10 +181,26 @@
   margin: 0 0 28px;
 }
 
+.navtab__hamburger-item:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+  .navtab__hamburger-item {
+    margin: 0 0 24px;
+  }
+}
+
 .navtab__hamburger-wrapper {
   margin: 621px 0 0;
   display: flex;
   gap: 23px;
+}
+
+@media screen and (max-width: 480px) {
+  .navtab__hamburger-wrapper {
+    margin: 420px 0 0;
+  }
 }
 
 .navtab__auth-wrapper {
