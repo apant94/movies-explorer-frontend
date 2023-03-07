@@ -8,3 +8,9 @@
     width: 92%;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .movies {
+    width: 91%;
+  }
+}
