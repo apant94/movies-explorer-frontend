@@ -57,6 +57,12 @@
   gap: 10px;
 }
 
+@media screen and (max-width: 768px) {
+  .techs__blocks {
+    width: 100%;
+  }
+}
+
 .techs__block {
   width: 90px;
   height: 60px;

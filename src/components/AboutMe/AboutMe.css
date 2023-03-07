@@ -98,7 +98,7 @@
 
 @media screen and (max-width: 768px) {
   .aboutme__avatar {
-    width: 255px;
-    height: 307px;
+    max-width: 255px;
+    min-height: 307px;
   }
 }
