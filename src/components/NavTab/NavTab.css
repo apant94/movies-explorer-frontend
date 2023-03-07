@@ -188,6 +188,13 @@
   color: #000000;
 }
 
+@media screen and (max-width: 480px) {
+  .navtab__auth-signup {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+}
+
 .navtab__auth-signin {
   display: flex;
   align-items: center;
@@ -200,4 +207,14 @@
   line-height: 1.33;
   text-decoration: none;
   color: #FFFFFF;
+}
+
+@media screen and (max-width: 480px) {
+  .navtab__auth-signin {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 1.6;
+    border-radius: 3px;
+  }
 }
