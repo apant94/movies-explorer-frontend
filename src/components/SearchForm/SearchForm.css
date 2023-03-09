@@ -46,6 +46,11 @@
   font-size: 12px;
   line-height: 1.5;
   color: #FFFFFF;
+  cursor: pointer;
+}
+
+.search__submit:hover {
+  opacity: .7;
 }
 
 .search__wrapper {
