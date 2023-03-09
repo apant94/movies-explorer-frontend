@@ -10,7 +10,9 @@ function AuthForm({greetings, children, submitText, onSubmit}) {
       </Link>
       <h2 className='authform__greetings'>{greetings}</h2>
       <form className='authform__element' onSubmit={onSubmit} >
-        {children}
+        <div className='aithform__inputs'>
+          {children}
+        </div>
         <button className='authform__submit' type='submit'>{submitText}</button>
       </form>
     </div>

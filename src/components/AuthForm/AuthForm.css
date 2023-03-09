@@ -41,6 +41,25 @@
 .authform__element {
   display: flex;
   flex-direction: column;
+  height: 380px;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .authform__element {
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .authform__element {
+    height: 468px;
+  }
+}
+
+.aithform__inputs {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -57,18 +76,10 @@
   align-items: center;
   color: #FFFFFF;
   cursor: pointer;
-  margin: 10px 0 0;
-}
-
-@media screen and (max-width: 768px) {
-  .authform__submit {
-    margin: 169px 0 0;
-  }
 }
 
 @media screen and (max-width: 480px) {
   .authform__submit {
-    margin: 147px 0 0;
     font-size: 12px;
     line-height: 1.25;
   }
