@@ -9,11 +9,11 @@ function Portfolio() {
       <a className='portfolio__arrow' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">↗</a>
     </div>
     <div className='portfolio__wrapper'>
-      <a className='portfolio__site' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">Адаптивный сайт</a>
+      <a className='portfolio__site' href='https://apant94.github.io/russian-travel/' target="_blank" rel="noreferrer">Адаптивный сайт</a>
       <a className='portfolio__arrow' href='https://apant94.github.io/russian-travel/' target="_blank" rel="noreferrer">↗</a>
     </div>
     <div className='portfolio__wrapper'>
-      <a className='portfolio__site' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">Одностраничное приложение</a>
+      <a className='portfolio__site' href='https://apant94.github.io/react-mesto-auth/' target="_blank" rel="noreferrer">Одностраничное приложение</a>
       <a className='portfolio__arrow' href='https://apant94.github.io/react-mesto-auth/' target="_blank" rel="noreferrer">↗</a>
     </div>
   </section>
