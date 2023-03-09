@@ -91,14 +91,15 @@
 
 @media screen and (max-width: 768px) {
   .techs__blocks {
+    justify-content: center;
     width: 100%;
+    flex-wrap: wrap;
   }
 }
 
 @media screen and (max-width: 480px) {
   .techs__blocks {
     max-width: 178px;
-    flex-wrap: wrap;
   }
 }
 
