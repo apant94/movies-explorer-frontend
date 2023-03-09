@@ -5,16 +5,16 @@ function Portfolio() {
   <section className='portfolio'>
     <h3 className='portfolio__title'>Портфолио</h3>
     <div className='portfolio__wrapper'>
-      <p className='portfolio__site'>Статичный сайт</p>
-      <a className='portfolio__arrow' href='https://apant94.github.io/how-to-learn/'>↗</a>
+      <a className='portfolio__site' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">Статичный сайт</a>
+      <a className='portfolio__arrow' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">↗</a>
     </div>
     <div className='portfolio__wrapper'>
-      <p className='portfolio__site'>Адаптивный сайт</p>
-      <a className='portfolio__arrow' href='https://apant94.github.io/russian-travel/'>↗</a>
+      <a className='portfolio__site' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">Адаптивный сайт</a>
+      <a className='portfolio__arrow' href='https://apant94.github.io/russian-travel/' target="_blank" rel="noreferrer">↗</a>
     </div>
     <div className='portfolio__wrapper'>
-      <p className='portfolio__site'>Одностраничное приложение</p>
-      <a className='portfolio__arrow' href='https://apant94.github.io/react-mesto-auth/'>↗</a>
+      <a className='portfolio__site' href='https://apant94.github.io/how-to-learn/' target="_blank" rel="noreferrer">Одностраничное приложение</a>
+      <a className='portfolio__arrow' href='https://apant94.github.io/react-mesto-auth/' target="_blank" rel="noreferrer">↗</a>
     </div>
   </section>
   );
