@@ -14,8 +14,8 @@ function Footer() {
             <p className='footer__copyright'>© 2023</p>
             <nav className='footer__links'>
               <ul className='footer__list'>
-                <li><a className='footer__link-item' href='https://practicum.yandex.ru/'>Яндекс.Практикум</a></li>
-                <li><a className='footer__link-item' href='https://github.com/apant94'>Github</a></li>
+                <li><a className='footer__link-item' href='https://practicum.yandex.ru/' target="_blank" rel="noreferrer">Яндекс.Практикум</a></li>
+                <li><a className='footer__link-item' href='https://github.com/apant94' target="_blank" rel="noreferrer">Github</a></li>
               </ul>
             </nav>
           </div>
