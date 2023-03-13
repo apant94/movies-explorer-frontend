@@ -1,0 +1,29 @@
+.authinput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.authinput__label {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #A0A0A0;
+}
+
+.authinput__element {
+  height: 16px;
+  background: #F9F9F9;
+  border-radius: 8px;
+  border: none;
+  padding: 15px;
+  margin: 10px 0 0;
+}
+
+.authinput__error {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #FF4062;
+  margin: 10px 0 0;
+}

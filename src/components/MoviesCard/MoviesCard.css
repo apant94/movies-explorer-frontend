@@ -1,0 +1,125 @@
+.moviescard {
+  background-color: #F9F9F9;
+  height: 134px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
+  .moviescard {
+    height: 232px;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+  }
+}
+
+.moviescard__container {
+  display: flex;
+  flex-direction: column;
+  margin: 22px;
+  position: relative;
+}
+
+@media screen and (max-width: 320px) {
+  .moviescard__container {
+    margin: 14px 16px 14px 12px;
+  }
+}
+
+.moviescard__name {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.22;
+  margin: 0;
+}
+
+@media screen and (max-width: 540px) {
+  .moviescard__name {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .moviescard__name {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
+
+.moviescard__duration {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.18;
+  color: #A0A0A0;
+  margin: 13px 0 30px;
+}
+
+@media screen and (max-width: 560px) {
+  .moviescard__duration {
+    margin: 13px 0 13px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .moviescard__duration {
+    margin: 8px 0 0;
+  }
+}
+
+.moviescard__like {
+  background-image: url(../../images/moviescard-like.png);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  padding: 0;
+  height: 12px;
+  width: 14px;
+  transition: .2s;
+  border: none;
+}
+
+@media screen and (max-width: 320px) {
+  .moviescard__like {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.moviescard__like:hover {
+  cursor: pointer;
+}
+
+.moviescard__like_active {
+  background-image: url(../../images/moviescard-like-active.png);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  padding: 0;
+  height: 12px;
+  width: 14px;
+  border: none;
+}
+
+.moviescard__image {
+  height: 122px;
+  width: 220px;
+  align-self: center;
+  margin: 0 6px 0 0;
+}
+
+@media screen and (max-width: 540px) {
+  .moviescard__image {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .moviescard__image {
+    height: 168px;
+    width: 100%;
+    margin: 0;
+    object-fit: contain;
+  }
+}

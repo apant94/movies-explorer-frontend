@@ -1,0 +1,68 @@
+.notfounderror {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .notfounderror {
+    height: auto;
+  }
+}
+
+.notfounderror__status {
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 1.21;
+  margin: 246px auto 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .notfounderror__status {
+    margin: 408px auto 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notfounderror__status {
+    margin: 329px auto 10px;
+    font-size: 80px;
+  line-height: 1.21;
+  }
+}
+
+.notfounderror__message {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.19;
+}
+
+@media screen and (max-width: 480px) {
+  .notfounderror__message {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
+
+.notfounderror__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  margin: auto auto 60px;
+  text-decoration: none;
+  color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .notfounderror__link {
+    margin: 184px auto 222px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notfounderror__link {
+    margin: 284px auto 30px;
+  }
+}

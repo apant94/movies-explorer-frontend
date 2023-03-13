@@ -1,0 +1,149 @@
+.aboutproject {
+  width: 89%;
+  margin: 110px auto 141px;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutproject {
+    width: 87%;
+    margin: 90px auto 121px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject {
+    width: 89%;
+    margin: 70px auto 93px;
+  }
+}
+
+.aboutproject__container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 70px 0 0;
+}
+
+@media screen and (max-width: 480px) {
+  .aboutproject__container {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    margin: 60px 0 0;
+  }
+}
+
+.aboutproject__column {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__column {
+    gap: 16px;
+  }
+}
+
+.aboutproject__subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__subtitle {
+    font-size: 18px;
+    line-height: 1.22;
+    letter-spacing: -0.04em;
+  }
+}
+
+.aboutproject__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .aboutproject__text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+}
+
+.aboutproject__progress {
+  width: 100%;
+  margin: 110px 0 0;
+  display: flex;
+}
+
+@media screen and (max-width: 480px) {
+  .aboutproject__progress {
+    margin: 60px 0 0;
+  }
+}
+
+.aboutproject__progress-item {
+  position: relative;
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 480px) {
+  .aboutproject__progress-item {
+    width: 35%;
+    height: 35px;
+  }
+}
+
+.aboutproject__progress-item:last-child {
+  width: 80%;
+  background-color: #F2F2F2;
+  color: #000000;
+}
+
+@media screen and (max-width: 480px) {
+  .aboutproject__progress-item:last-child {
+    width: 65%;
+  }
+}
+
+.aboutproject__progress-weeks {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+@media screen and (max-width: 480px) {
+  .aboutproject__progress-weeks {
+    font-size: 11px;
+    line-height: 1.18;
+  }  
+}
+
+.aboutproject__progress-definition {
+  position: absolute;
+  bottom: -33px;
+  color: #A0A0A0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+@media screen and (max-width: 480px) {
+  .aboutproject__progress-definition {
+    bottom: -24px;
+    font-size: 11px;
+    line-height: 1.18;
+  }
+}
