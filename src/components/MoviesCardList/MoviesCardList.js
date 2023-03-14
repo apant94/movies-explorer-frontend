@@ -1,7 +1,7 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import './MoviesCardList.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function MoviesCardList({movies}) {
 
@@ -26,15 +26,30 @@ function MoviesCardList({movies}) {
 
   const [width, setWidth] = useState(window.innerWidth); // стэйт ширины экрана юзера
   const [visibleMoviesCount, setVisibleMoviesCount] = useState(getMoviesCount(width)); //количество отображаемых фильмов
-  const [isLoading, setisLoading] = useState(false); //стэйт прелоадера
+  const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
 
   const addMoreMovies = () => {
-    setisLoading(true)
+    setIsLoading(true)
     setTimeout(() => {
       setVisibleMoviesCount((prevCount)=> prevCount + getMoreMoviesStep(width));
-        setisLoading(false)
+        setIsLoading(false)
     }, 600)
   }
+
+  useEffect(() => {
+    let timeoutId = null;
+
+    const resizeListener = () => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => setWidth(window.innerWidth), 150);
+    };
+
+    window.addEventListener('resize', resizeListener);
+
+    return() => {
+        window.removeEventListener('resize', resizeListener)
+    }; 
+  }, []);
 
   return(
     <section className='movieslist'>
