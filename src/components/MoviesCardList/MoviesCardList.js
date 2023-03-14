@@ -1,16 +1,12 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList() {
+function MoviesCardList({movies}) {
   return(
     <section className='movieslist'>
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
+      {movies.map((movie) => (
+        <MoviesCard movie={movie} key={movie.id || movie.movieId} />
+      ))}
       <button className='movieslist__button' type='button'>Ещё</button>
     </section>
   );

@@ -1,4 +1,4 @@
-export class Api {
+export class MoviesApi {
   constructor(baseUrl, { headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -12,7 +12,7 @@ export class Api {
   }
 
   getMoviesCards() {
-    return fetch(`${this._baseUrl}/movies`, {
+    return fetch(`${this._baseUrl}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export class Api {
 }
 }
 
-const api = new Api(
+const moviesApi = new MoviesApi(
   "https://api.nomoreparties.co/beatfilm-movies",
   {
   headers: {
@@ -30,4 +30,4 @@ const api = new Api(
   },
 });
 
-export default api;
+export default moviesApi;

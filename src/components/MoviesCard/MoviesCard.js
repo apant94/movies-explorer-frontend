@@ -1,8 +1,7 @@
 import './MoviesCard.css';
 import { useState } from 'react';
-import MoviePath from '../../images/moviescard-image.jpg';
 
-function MoviesCard() {
+function MoviesCard({movie}) {
   const [ isLiked, setIsLiked ] = useState(false);
 
   const cardLikeButtonClassName = (
@@ -14,14 +13,22 @@ function MoviesCard() {
     e.target.classList.toggle('moviescard__like_active');
   }
 
+  function convertTimeDuration(mins) {
+    let hours = Math.trunc(mins/60);
+    let minutes = mins % 60;
+    return hours + 'ч ' + minutes + 'м';
+  }
+
   return(
     <article className='moviescard'>
       <div className='moviescard__container'>
-        <h2 className='moviescard__name'>33 слова о дизайне</h2>
-        <p className='moviescard__duration'>1ч 42м</p>
+        <h2 className='moviescard__name'>{movie.nameRU}</h2>
+        <p className='moviescard__duration'>{convertTimeDuration(movie.duration)}</p>
         <button onClick={handleLikeClick} className={cardLikeButtonClassName} type='button'></button>
       </div>
-      <img className='moviescard__image' src={MoviePath} alt='Постер к фильму' />
+      <a href={movie.trailerLink} target="_blank" rel="noreferrer">
+        <img className='moviescard__image' src={`https://api.nomoreparties.co${movie.image.url}`} alt='Постер к фильму' />
+      </a>
     </article>
   );
 }
