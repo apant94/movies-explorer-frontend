@@ -3,7 +3,7 @@ import Preloader from '../Preloader/Preloader';
 import './MoviesCardList.css';
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({movies}) {
+function MoviesCardList({movies, isLoading, setIsLoading}) {
 
   // устанавливаем количество изображаемых мувикардс в зависимости от ширины экрана
   const getMoviesCount = (width) => {
@@ -26,7 +26,6 @@ function MoviesCardList({movies}) {
 
   const [width, setWidth] = useState(window.innerWidth); // стэйт ширины экрана юзера
   const [visibleMoviesCount, setVisibleMoviesCount] = useState(getMoviesCount(width)); //количество отображаемых фильмов
-  const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
 
   const addMoreMovies = () => {
     setIsLoading(true)
