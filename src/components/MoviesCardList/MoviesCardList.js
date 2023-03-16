@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 function MoviesCardList({movies, isLoading, setIsLoading}) {
 
-  // устанавливаем количество изображаемых мувикардс в зависимости от ширины экрана
+  // устанавливаем количество изображаемых фильмов в зависимости от ширины экрана
   const getMoviesCount = (width) => {
     if (width >= 1280) {
         return 12;
@@ -16,6 +16,7 @@ function MoviesCardList({movies, isLoading, setIsLoading}) {
     }
   }
 
+  // устанавливаем количество изображаемых фильмов после нажатия на кнопку ещё
   const getMoreMoviesStep = (width) => {
     if (width >= 1280) {
         return 3;
@@ -27,6 +28,7 @@ function MoviesCardList({movies, isLoading, setIsLoading}) {
   const [width, setWidth] = useState(window.innerWidth); // стэйт ширины экрана юзера
   const [visibleMoviesCount, setVisibleMoviesCount] = useState(getMoviesCount(width)); //количество отображаемых фильмов
 
+  // функция загрузки фильмов после кнопки ещё
   const addMoreMovies = () => {
     setIsLoading(true)
     setTimeout(() => {
@@ -35,6 +37,7 @@ function MoviesCardList({movies, isLoading, setIsLoading}) {
     }, 600)
   }
 
+  // вешаем слушатель на размер экрана для изменения количества отображаемых фильмов
   useEffect(() => {
     let timeoutId = null;
 

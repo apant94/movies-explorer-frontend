@@ -18,8 +18,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false); // стейт статуса авторизации юзера
   const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
   const [movies, setMovies] = useState([]); // все фильмы
-  const [search, setSearch] = useState(''); // стэйт поисковой строки
-  const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
+  // const [search, setSearch] = useState(''); // стэйт поисковой строки
+  // const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
 
   function registration() {
     navigate('/signin');
@@ -55,44 +55,44 @@ function App() {
 
   // поиск по фильмам
 
-  const loadFilteredMovies = (movies) => {
-    // const formatted = movies.map((movie) => ({
-    //     ...movie,
-    //     _id: (favoriteCards.find(likedCard => likedCard.movieId === card.id) || {})._id,
-    //     isLiked: isLikedCard(card)
-    //   })
-    // )
+  // const loadFilteredMovies = (movies) => {
+  //   // const formatted = movies.map((movie) => ({
+  //   //     ...movie,
+  //   //     _id: (favoriteCards.find(likedCard => likedCard.movieId === card.id) || {})._id,
+  //   //     isLiked: isLikedCard(card)
+  //   //   })
+  //   // )
     
-    setFilteredMovies(movies);
-    localStorage.setItem('all_filtered_movies', JSON.stringify(movies));
-  }
+  //   setFilteredMovies(movies);
+  //   localStorage.setItem('all_filtered_movies', JSON.stringify(movies));
+  // }
 
-  function handleSearchSubmit() {
-    setTimeout(() => {
-      if (search.length) {
-        const filteredMovies = movies.filter((movie) => movie.nameRU.toLowerCase().indexOf(search) >= 0);
+  // function handleSearchSubmit() {
+  //   setTimeout(() => {
+  //     if (search.length) {
+  //       const filteredMovies = movies.filter((movie) => movie.nameRU.toLowerCase().indexOf(search) >= 0);
         
-        // if (filteredMovies.length === 0) {
-        //   setTimeout(setShowToolTip, 1000, true);
-        //   ChooseInfoTooltip({
-        //     image: error,
-        //     text: "Ничего не найдено",
-        //   });
-        // } else {
-          loadFilteredMovies(filteredMovies)
-        // }
-    } else {
-      loadFilteredMovies(movies)
-      setIsLoading(false)
-    }
-    }, 600);
-  }
+  //       // if (filteredMovies.length === 0) {
+  //       //   setTimeout(setShowToolTip, 1000, true);
+  //       //   ChooseInfoTooltip({
+  //       //     image: error,
+  //       //     text: "Ничего не найдено",
+  //       //   });
+  //       // } else {
+  //         loadFilteredMovies(filteredMovies)
+  //       // }
+  //   } else {
+  //     loadFilteredMovies(movies)
+  //     setIsLoading(false)
+  //   }
+  //   }, 600);
+  // }
 
-  const updateSearch = (search) => {
-    search = search.toLowerCase();
-    setSearch(search);
-    localStorage.setItem('all_query', search);
-  }
+  // const updateSearch = (search) => {
+  //   search = search.toLowerCase();
+  //   setSearch(search);
+  //   localStorage.setItem('all_query', search);
+  // }
 
   return (
     <div className="page">
@@ -106,8 +106,8 @@ function App() {
       <Route path='/movies' element={
         <Movies 
           movies={movies} 
-          onSearchSubmit={handleSearchSubmit} 
-          onUpdateSearch={updateSearch}
+          // onSearchSubmit={handleSearchSubmit} 
+          // onUpdateSearch={updateSearch}
           isLoading={isLoading} 
           setIsLoading={setIsLoading} />} 
         />

@@ -37,6 +37,17 @@
   }
 }
 
+.search__error {
+  position: absolute;
+  height: 14px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #FF4062;
+  top: 55px;
+  left: 0;
+}
+
 .search__submit {
   width: 70px;
   border: none;
