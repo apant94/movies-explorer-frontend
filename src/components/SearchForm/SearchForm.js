@@ -18,7 +18,7 @@ function SearchForm({ handleSearchSubmit }) {
   // сабмит формы поиска
   function handleSubmit(e) {
     e.preventDefault();
-    isValid ? handleSearchSubmit(values.search) : setErrorQuery('Нужно ввести ключевое слово.');
+    isValid ? handleSearchSubmit(values.search) : setErrorQuery('Введите запрос');
   };
 
   //состояние инпута из локального хранилища

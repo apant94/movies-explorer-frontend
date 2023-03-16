@@ -24,7 +24,7 @@ function filterMovies(movies, userQuery) {
     if (moviesList.length === 0) {
       console.log('ничего не найдено')
     };
-
+    
     setFilteredMovies(moviesList);
     localStorage.setItem(`all_movies`, JSON.stringify(moviesList));
   }
@@ -44,7 +44,12 @@ function filterMovies(movies, userQuery) {
   return (
   <main className='movies'>
     <SearchForm  handleSearchSubmit={handleSearchSubmit} />
-    <MoviesCardList movies={movies} isLoading={isLoading} setIsLoading={setIsLoading} />
+    <MoviesCardList 
+      // movies={movies} 
+      movies={filteredMovies}
+      isLoading={isLoading} 
+      setIsLoading={setIsLoading} 
+    />
   </main>
   );
 }
