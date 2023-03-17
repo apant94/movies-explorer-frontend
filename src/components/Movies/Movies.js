@@ -7,7 +7,7 @@ import moviesApi from '../../utils/MoviesApi';
 function Movies({isLoading, setIsLoading}) {
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
-  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы
+  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные фильмы по короткометражке и поиску 
   const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску
 
   // фильтрация фильмов по запросу
@@ -18,6 +18,7 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
     const chosenMovie = userQuery.toLowerCase();
     return movieRu.indexOf(chosenMovie) !== -1 || movieEn.indexOf(chosenMovie) !== -1;
   });
+  // условие для состояния чекбокса с короткометражками
   if (onShortMoviesCheckbox) {
     return filterShortMovies(moviesByQuery);
   } else {
@@ -28,6 +29,7 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
   // поиск по массиву и установка состояния
   function handleSetFilteredMovies(movies, userQuery, onShortMoviesCheckbox) {
     const moviesList = filterMovies(movies, userQuery, onShortMoviesCheckbox);
+    // условие при отсутствии результатов
     if (moviesList.length === 0) {
       setNoResult(true);
     } else {
