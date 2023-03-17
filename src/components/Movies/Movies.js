@@ -8,6 +8,7 @@ function Movies({isLoading, setIsLoading}) {
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам (initialMovies)
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
   const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы (filteredMovies)
+  const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску
 
   // фильтрация фильмов по запросу
 function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
@@ -28,7 +29,9 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
   function handleSetFilteredMovies(movies, userQuery, onShortMoviesCheckbox) {
     const moviesList = filterMovies(movies, userQuery, onShortMoviesCheckbox);
     if (moviesList.length === 0) {
-      console.log('ничего не найдено')
+      setNoResult(true);
+    } else {
+      setNoResult(false);
     };
     
     setFilteredMovies(moviesList);
@@ -76,7 +79,8 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
     <MoviesCardList 
       movies={filteredOrShortMovies}
       isLoading={isLoading} 
-      setIsLoading={setIsLoading} 
+      setIsLoading={setIsLoading}
+      noResult={noResult}
     />
   </main>
   );

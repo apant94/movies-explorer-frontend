@@ -3,7 +3,7 @@ import Preloader from '../Preloader/Preloader';
 import './MoviesCardList.css';
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({movies, isLoading, setIsLoading}) {
+function MoviesCardList({ movies, isLoading, setIsLoading, noResult }) {
 
   // устанавливаем количество изображаемых фильмов в зависимости от ширины экрана
   const getMoviesCount = (width) => {
@@ -30,11 +30,11 @@ function MoviesCardList({movies, isLoading, setIsLoading}) {
 
   // функция загрузки фильмов после кнопки ещё
   const addMoreMovies = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     setTimeout(() => {
       setVisibleMoviesCount((prevCount)=> prevCount + getMoreMoviesStep(width));
-        setIsLoading(false)
-    }, 600)
+      setIsLoading(false);
+    }, 600);
   }
 
   // вешаем слушатель на размер экрана для изменения количества отображаемых фильмов
@@ -59,6 +59,7 @@ function MoviesCardList({movies, isLoading, setIsLoading}) {
         <MoviesCard movie={movie} key={movie.id || movie.movieId} />
       ))}
       {isLoading && <Preloader />}
+      {!isLoading && noResult && <p className='movieslist__noresult'>Ничего не найдено</p>}
       {visibleMoviesCount < movies.length && (
       <button className='movieslist__button' type='button' onClick={addMoreMovies}>Ещё</button>
       )}
