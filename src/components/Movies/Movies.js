@@ -6,8 +6,8 @@ import moviesApi from '../../utils/MoviesApi';
 
 function Movies({isLoading, setIsLoading}) {
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам (initialMovies)
-  const [shortMovies, setShortMovies] = useState(false); // стейт короткометражек
-  const [filteredShortMovies, setFilteredShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы
+  const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
+  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы (filteredMovies)
 
   // фильтрация фильмов по запросу
 function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
@@ -32,20 +32,19 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
     };
     
     setFilteredMovies(moviesList);
-    setFilteredShortMovies(
-      onShortMoviesCheckbox ? filterShortMovies(moviesList) : moviesList
-    );
+    setFilteredOrShortMovies(onShortMoviesCheckbox ? filterShortMovies(moviesList) : moviesList);
     localStorage.setItem(`all_movies`, JSON.stringify(moviesList));
   }
 
   // поиск по запросу
   function handleSearchSubmit(inputValue) {
     localStorage.setItem('all_movies_search', inputValue);
+    localStorage.setItem('all_short_search', shortMovies);
 
     setIsLoading(true);
     moviesApi
       .getMoviesCards()
-      .then((movies) => handleSetFilteredMovies(movies, inputValue))
+      .then((movies) => handleSetFilteredMovies(movies, inputValue, shortMovies))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }
@@ -60,9 +59,9 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
   function handleShortMovies() {
     setShortMovies(!shortMovies);
     if (!shortMovies) {
-      setFilteredShortMovies(filterShortMovies(filteredMovies));
+      setFilteredOrShortMovies(filterShortMovies(filteredMovies));
     } else {
-      setFilteredShortMovies(filteredMovies);
+      setFilteredOrShortMovies(filteredMovies);
     }
     localStorage.setItem('all_short_movies', !shortMovies);
   }
@@ -75,8 +74,7 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
       shortMovies={shortMovies}
      />
     <MoviesCardList 
-      // movies={movies} 
-      movies={filteredMovies}
+      movies={filteredOrShortMovies}
       isLoading={isLoading} 
       setIsLoading={setIsLoading} 
     />
