@@ -31,24 +31,6 @@ function App() {
     navigate('/');
   }
 
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     getAllMovies();
-  //   }
-  // }, [loggedIn]);
-
-  // const getAllMovies = () => {
-  //   moviesApi.getMoviesCards()
-  //   .then((res) => {
-  //     updateMovies(res);
-  //   })
-  // }
-
-  // const updateMovies = (movies) => {
-  //   setMovies(movies);
-  //   localStorage.setItem('all_movies', JSON.stringify(movies));
-  // }
-
   return (
     <div className="page">
     <Header>
