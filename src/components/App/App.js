@@ -10,15 +10,12 @@ import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
 import NotFoundError from '../NotFoundError/NotFoundError';
 import Footer from '../Footer/Footer';
-import moviesApi from '../../utils/MoviesApi';
 
 function App() {
   const navigate = useNavigate();
 
   const [loggedIn, setLoggedIn] = useState(false); // стейт статуса авторизации юзера
   const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
-  const [movies, setMovies] = useState([]); // все фильмы
-  // const [search, setSearch] = useState(''); // стэйт поисковой строки
 
   function registration() {
     navigate('/signin');
@@ -34,23 +31,23 @@ function App() {
     navigate('/');
   }
 
-  useEffect(() => {
-    if (loggedIn) {
-      getAllMovies();
-    }
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     getAllMovies();
+  //   }
+  // }, [loggedIn]);
 
-  const getAllMovies = () => {
-    moviesApi.getMoviesCards()
-    .then((res) => {
-      updateMovies(res);
-    })
-  }
+  // const getAllMovies = () => {
+  //   moviesApi.getMoviesCards()
+  //   .then((res) => {
+  //     updateMovies(res);
+  //   })
+  // }
 
-  const updateMovies = (movies) => {
-    setMovies(movies);
-    localStorage.setItem('all_movies', JSON.stringify(movies));
-  }
+  // const updateMovies = (movies) => {
+  //   setMovies(movies);
+  //   localStorage.setItem('all_movies', JSON.stringify(movies));
+  // }
 
   return (
     <div className="page">
@@ -63,7 +60,6 @@ function App() {
       <Route path='/' element={<Main />} />
       <Route path='/movies' element={
         <Movies 
-          movies={movies} 
           isLoading={isLoading} 
           setIsLoading={setIsLoading} 
         />} 

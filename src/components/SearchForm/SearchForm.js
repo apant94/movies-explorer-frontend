@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function SearchForm({ handleSearchSubmit }) {
+function SearchForm({ handleSearchSubmit, handleShortMovies, shortMovies }) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
   const { values, handleChange, isValid, setIsValid } = useFormAndValidation();
@@ -48,7 +48,12 @@ function SearchForm({ handleSearchSubmit }) {
         <button className='search__submit' type='submit'>Найти</button>
       </form>
       <div className='search__wrapper'>
-        <input className='search__shortfilms' type='checkbox' />
+        <input 
+          className='search__shortfilms' 
+          type='checkbox' 
+          onChange={handleShortMovies}
+          checked={shortMovies ? true : false}
+        />
         <p className='search__shortfilms-title'>Короткометражки</p>
       </div>
     </section>

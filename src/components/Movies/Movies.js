@@ -4,28 +4,37 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
 
-function Movies({movies, isLoading, setIsLoading}) {
+function Movies({isLoading, setIsLoading}) {
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам (initialMovies)
+  const [shortMovies, setShortMovies] = useState(false); // стейт короткометражек
+  const [filteredShortMovies, setFilteredShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы
 
   // фильтрация фильмов по запросу
-function filterMovies(movies, userQuery) {
-  const moviesByUserQuery = movies.filter((movie) => {
+function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
+  const moviesByQuery = movies.filter((movie) => {
     const movieRu = String(movie.nameRU).toLowerCase();
     const movieEn = String(movie.nameEN).toLowerCase();
-    const userMovie = userQuery.toLowerCase();
-    return movieRu.indexOf(userMovie) !== -1 || movieEn.indexOf(userMovie) !== -1;
+    const chosenMovie = userQuery.toLowerCase();
+    return movieRu.indexOf(chosenMovie) !== -1 || movieEn.indexOf(chosenMovie) !== -1;
   });
-  return moviesByUserQuery;
+  if (onShortMoviesCheckbox) {
+    return filterShortMovies(moviesByQuery);
+  } else {
+    return moviesByQuery;
+  }
 }
 
   // поиск по массиву и установка состояния
-  function handleSetFilteredMovies(movies, userQuery) {
-    const moviesList = filterMovies(movies, userQuery);
+  function handleSetFilteredMovies(movies, userQuery, onShortMoviesCheckbox) {
+    const moviesList = filterMovies(movies, userQuery, onShortMoviesCheckbox);
     if (moviesList.length === 0) {
       console.log('ничего не найдено')
     };
     
     setFilteredMovies(moviesList);
+    setFilteredShortMovies(
+      onShortMoviesCheckbox ? filterShortMovies(moviesList) : moviesList
+    );
     localStorage.setItem(`all_movies`, JSON.stringify(moviesList));
   }
 
@@ -40,10 +49,31 @@ function filterMovies(movies, userQuery) {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }
+
+  // поиск по короткометражкам
+  // фильтрация короткометражек по длительности
+  function filterShortMovies(movies) {
+    return movies.filter(movie => movie.duration < 40);
+  }
+
+  // состояние чекбокса
+  function handleShortMovies() {
+    setShortMovies(!shortMovies);
+    if (!shortMovies) {
+      setFilteredShortMovies(filterShortMovies(filteredMovies));
+    } else {
+      setFilteredShortMovies(filteredMovies);
+    }
+    localStorage.setItem('all_short_movies', !shortMovies);
+  }
   
   return (
   <main className='movies'>
-    <SearchForm  handleSearchSubmit={handleSearchSubmit} />
+    <SearchForm  
+      handleSearchSubmit={handleSearchSubmit}
+      handleShortMovies={handleShortMovies}
+      shortMovies={shortMovies}
+     />
     <MoviesCardList 
       // movies={movies} 
       movies={filteredMovies}
