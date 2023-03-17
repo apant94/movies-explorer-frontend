@@ -5,9 +5,9 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
 
 function Movies({isLoading, setIsLoading}) {
-  const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам (initialMovies)
+  const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
-  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы (filteredMovies)
+  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные по краткометражке и поиску фильмы
   const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску
 
   // фильтрация фильмов по запросу
