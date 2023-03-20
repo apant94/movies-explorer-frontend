@@ -19,7 +19,7 @@ export class MoviesApi {
         },
     })
     .then(this._checkStatus)
-}
+  }
 }
 
 const moviesApi = new MoviesApi(
