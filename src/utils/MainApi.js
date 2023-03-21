@@ -1,4 +1,4 @@
-export class MainApi {
+class MainApi {
   constructor(baseUrl, { headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -73,3 +73,5 @@ const mainApi = new MainApi(
     "Content-Type": "application/json",
   },
 });
+
+export default mainApi;
