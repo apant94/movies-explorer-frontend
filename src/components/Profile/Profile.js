@@ -1,7 +1,7 @@
 import './Profile.css';
 import { useState } from 'react';
 
-function Profile({logout}) {
+function Profile({ logout, loggedIn, handleProfile }) {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

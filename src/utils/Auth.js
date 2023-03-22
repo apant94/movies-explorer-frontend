@@ -29,12 +29,12 @@ export const login = (email, password) => {
   }).then(_checkStatus);
 };
 
-export const checkToken = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
-    headers: {
-      ...header,
-      Authorization: `Bearer ${token}`,
-    },
-  }).then(_checkStatus);
-};
+// export const checkToken = (token) => {
+//   return fetch(`${BASE_URL}/users/me`, {
+//     method: "GET",
+//     headers: {
+//       ...header,
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }).then(_checkStatus);
+// };

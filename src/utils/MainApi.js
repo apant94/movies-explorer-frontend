@@ -13,7 +13,9 @@ class MainApi {
 
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkStatus);
   }
 
