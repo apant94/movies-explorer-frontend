@@ -1,34 +1,28 @@
 import './Profile.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Profile({ logout, loggedIn, handleProfile }) {
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+function Profile({ logout, handleProfile }) {
+  const currentUser = useContext(CurrentUserContext);
+  const { values, handleChange, errors } = useFormAndValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-  }
-
-  function handleSetEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleSetName(e) {
-    setName(e.target.value);
+    handleProfile(values);
   }
 
   return(
     <main className='profile'>
-      <h2 className='profile__greetings'>Привет, Виталий!</h2>
+      <h2 className='profile__greetings'>{`Привет, ${currentUser.name}!`}</h2>
       <form className='profile__form' onClick={handleSubmit}>
         <div className='profile__input-wrapper'>
           <label htmlFor='name' className='profile__input-label'>Имя</label>
-          <input className='profile__input' placeholder="Имя"name='name' type='text' value={name || ''} onChange={handleSetName} minLength={'2'} maxLength={'20'} />
+          <input className='profile__input' placeholder="Имя" name='name' type='text' value={currentUser.name || ''} onChange={handleChange} minLength={'2'} maxLength={'20'} />
         </div>
         <div className='profile__input-wrapper'>
           <label htmlFor='email' className='profile__input-label'>E-mail</label>
-          <input className='profile__input' placeholder="Почта" name='email' type='email' value={email || ''} onChange={handleSetEmail} />
+          <input className='profile__input' placeholder="Почта" name='email' type='email' value={currentUser.email || ''} onChange={handleChange} />
         </div>
         <button type='submit' className='profile__edit-btn'>Редактировать</button>
       </form>

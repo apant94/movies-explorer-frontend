@@ -83,6 +83,15 @@ function App() {
     }
   }, []);
 
+  // получение информации о пользователе при авторизации
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getUser()
+        .then((res) => setCurrentUser(res))
+        .catch((err) => console.log(err))
+    }
+  }, [loggedIn]);
 
 // Функциональность страницы профиля
   function handleProfile(userData) {
@@ -97,6 +106,8 @@ function App() {
       setIsAuthOk(false);
     })
   }
+
+  console.log(currentUser);
 
   // function registration() {
   //   navigate('/signin');
@@ -129,7 +140,7 @@ function App() {
           />} 
         />
         <Route path='/saved-movies' element={<Movies />} />
-        <Route path='/profile' element={<Profile logout={logout} loggedIn={loggedIn} handleProfile={handleProfile} />} />
+        <Route path='/profile' element={<Profile logout={logout} handleProfile={handleProfile} />} />
         <Route path='/*' element={<NotFoundError />} />
       </Routes>
       <Footer />
