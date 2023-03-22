@@ -94,9 +94,9 @@ function App() {
   }, [loggedIn]);
 
 // Функциональность страницы профиля
-  function handleProfile(userData) {
+  function handleProfile({ name, email }) {
     mainApi
-    .setUser(userData)
+    .setUser(name, email)
     .then((newUserData) => {
       setCurrentUser(newUserData);
       setIsAuthOk(true);
@@ -106,8 +106,6 @@ function App() {
       setIsAuthOk(false);
     })
   }
-
-  console.log(currentUser);
 
   // function registration() {
   //   navigate('/signin');

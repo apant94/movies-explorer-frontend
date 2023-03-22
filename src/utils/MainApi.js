@@ -15,18 +15,15 @@ class MainApi {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
+      }, 
     }).then(this._checkStatus);
   }
 
-  setUser(data) {
+  setUser(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-      }),
+      body: JSON.stringify({ name, email }),
     }).then(this._checkStatus);
   }
 
