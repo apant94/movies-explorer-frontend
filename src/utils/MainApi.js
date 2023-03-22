@@ -69,7 +69,7 @@ const mainApi = new MainApi(
   // "https://api.apant.nomoredomainsclub.ru",
   {
   headers: {
-    // authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
 });
