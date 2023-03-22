@@ -1,5 +1,5 @@
-export const BASE_URL = "http://localhost:3000";
-// export const BASE_URL = "https://api.apant.nomoredomainsclub.ru";
+// export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://api.apantdiploma.nomoredomains.work";
 
 const header = {
   Accept: "application/json",
@@ -26,5 +26,15 @@ export const login = (email, password) => {
     method: "POST",
     headers: header,
     body: JSON.stringify({ email, password }),
+  }).then(_checkStatus);
+};
+
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      ...header,
+      Authorization: `Bearer ${token}`,
+    },
   }).then(_checkStatus);
 };

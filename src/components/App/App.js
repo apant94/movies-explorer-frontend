@@ -59,10 +59,11 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
+
     if (jwt) {
-      mainApi
-        .getUser(jwt)
-        .then((res) => {
+      auth
+        .checkToken(jwt)
+        .then(() => {
           setLoggedIn(true);
           navigate('/');
         })
@@ -70,7 +71,7 @@ function App() {
           console.log(err);
         });
     }
-  });
+  }, []);
 
   // function registration() {
   //   navigate('/signin');

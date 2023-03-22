@@ -9,7 +9,7 @@ function AuthForm({greetings, children, submitText, onSubmit}) {
         <img src={LogoPath} alt='Логотип' className='authform__logo' />
       </Link>
       <h2 className='authform__greetings'>{greetings}</h2>
-      <form className='authform__element' onSubmit={onSubmit} >
+      <form className='authform__element' onSubmit={onSubmit} noValidate>
         <div className='aithform__inputs'>
           {children}
         </div>

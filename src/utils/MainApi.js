@@ -65,8 +65,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi(
-  "http://localhost:3000",
-  // "https://api.apant.nomoredomainsclub.ru",
+  // "http://localhost:3000",
+  "https://api.apantdiploma.nomoredomains.work",
   {
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,

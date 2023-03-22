@@ -1,35 +1,22 @@
 import './Login.css';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 function Login({authorization}) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const { values, handleChange, errors } = useFormAndValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    
-    const userValues = {};
-    userValues.email = email;
-    userValues.password = password;
-    authorization(userValues);
-    }
-
-    function handleSetEmail(e) {
-      setEmail(e.target.value);
-    }
-
-    function handleSetPassword(e) {
-      setPassword(e.target.value);
+    authorization(values.email, values.password);
     }
 
   return(
     <>
       <AuthForm greetings={'Рады видеть!'} onSubmit={handleSubmit} submitText={'Войти'}>
-        <AuthInput title={'E-mail'} type={'email'} value={email} required onChange={handleSetEmail} />
-        <AuthInput title={'Пароль'} type={'password'} value={password} required onChange={handleSetPassword} />
+        <AuthInput name='email' title={'E-mail'} type={'email'} value={values.email || ''} required onChange={handleChange} errors={errors.email} />
+        <AuthInput name='password' title={'Пароль'} type={'password'} value={values.password || ''} required onChange={handleChange} errors={errors.password} />
       </AuthForm>
       <p className='login__text'>Ещё не зарегистрированы? <Link to={'/signup'} className='login__link'>Регистрация</Link></p>
     </>
