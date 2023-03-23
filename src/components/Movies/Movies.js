@@ -1,14 +1,17 @@
 import './Movies.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
+import mainApi from '../../utils/MainApi';
 
-function Movies({isLoading, setIsLoading}) {
+
+function Movies({ isLoading, setIsLoading, onLikeClick, onDeleteClick, loggedIn, currentUser }) {
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
   const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные фильмы по короткометражке и поиску 
   const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску
+  const [savedMovies, setSavedMovies] = useState([]); // стейт сохраненных фильмов (favoriteCards)
 
   // фильтрация фильмов по запросу
 function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
@@ -70,6 +73,51 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
     }
     localStorage.setItem('all_short_movies', !shortMovies);
   }
+
+// Функциональность сохранения фильмов 
+  // сохранение фильма (addFavoriteMovie)
+  function saveMovie(movie) {
+    mainApi
+    .saveMovie(movie)
+    .then((newMovie) => setSavedMovies([newMovie, ...savedMovies]))
+    .catch((err) => console.log(err))
+  }
+
+  // удаление фильма из сохраненных (deleteFavoriteMovie )
+  function deleteMovie(movie) {
+    const savedMovie = savedMovies.find((item) => item.movieId === movie.id || item.movieId === movie.movieId);
+
+    mainApi
+    .deleteMovie(savedMovie.data._id)
+    .then(() => {
+      const newMoviesList = savedMovies.filter(m => {
+        if (movie.id === m.movieId || movie.movieId === m.movieId) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      setSavedMovies(newMoviesList);
+    })
+    .catch((err) => console.log(err))
+  }
+
+  // получение списка сохраненных фильмов (fetchFavoriteMovies )
+  const fetchSavedMovies = () => {
+    mainApi
+      .getSavedMovies()
+      .then((data) => {
+        const UserMoviesList = data.filter(movie => movie.owner === currentUser._id);
+        setSavedMovies(UserMoviesList);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    if (loggedIn) {
+      fetchSavedMovies();
+    }
+  }, [loggedIn]);
   
   return (
   <main className='movies'>
@@ -83,6 +131,8 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
       isLoading={isLoading} 
       setIsLoading={setIsLoading}
       noResult={noResult}
+      onLikeClick={saveMovie}
+      onDeleteClick={deleteMovie}
     />
   </main>
   );

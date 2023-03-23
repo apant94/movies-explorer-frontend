@@ -1,7 +1,7 @@
 import './MoviesCard.css';
 import { useState } from 'react';
 
-function MoviesCard({movie}) {
+function MoviesCard({ movie, onLikeClick, onDeleteClick }) {
   const [ isLiked, setIsLiked ] = useState(false);
 
   const cardLikeButtonClassName = (
@@ -11,6 +11,13 @@ function MoviesCard({movie}) {
   function handleLikeClick(e) {
     e.preventDefault();
     e.target.classList.toggle('moviescard__like_active');
+    if (!isLiked) {
+      onLikeClick(movie);
+      setIsLiked(true);
+    } else {
+      onDeleteClick(movie);
+      setIsLiked(false);
+    };
   }
 
   function convertTimeDuration(mins) {

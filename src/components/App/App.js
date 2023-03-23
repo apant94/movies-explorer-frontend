@@ -68,8 +68,6 @@ function App() {
     const jwt = localStorage.getItem("jwt");
 
     if (jwt) {
-      // auth
-      //   .checkToken(jwt)
       mainApi
         .getUser()
         .then((data) => {
@@ -120,10 +118,16 @@ function App() {
         <Route path='/movies' element={
           <Movies 
             isLoading={isLoading} 
-            setIsLoading={setIsLoading} 
+            setIsLoading={setIsLoading}
+            loggedIn={loggedIn}
+            currentUser={currentUser}
           />} 
         />
-        <Route path='/saved-movies' element={<Movies />} />
+        <Route path='/saved-movies' element={
+        <Movies
+          loggedIn={loggedIn}
+          currentUser={currentUser}
+         />} />
         <Route path='/profile' element={<Profile logout={logout} handleProfile={handleProfile} />} />
         <Route path='/*' element={<NotFoundError />} />
       </Routes>

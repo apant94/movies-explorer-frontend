@@ -3,7 +3,8 @@ import Preloader from '../Preloader/Preloader';
 import './MoviesCardList.css';
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({ movies, isLoading, setIsLoading, noResult }) {
+function MoviesCardList({ movies, isLoading, setIsLoading, noResult, onLikeClick, onDeleteClick }) {
+
 
   // устанавливаем количество изображаемых фильмов в зависимости от ширины экрана
   const getMoviesCount = (width) => {
@@ -56,7 +57,12 @@ function MoviesCardList({ movies, isLoading, setIsLoading, noResult }) {
   return(
     <section className='movieslist'>
       {movies.slice(0, visibleMoviesCount).map((movie) => (
-        <MoviesCard movie={movie} key={movie.id || movie.movieId} />
+        <MoviesCard 
+          onLikeClick={onLikeClick} 
+          onDeleteClick={onDeleteClick} 
+          movie={movie} 
+          key={movie.id || movie.movieId} 
+        />
       ))}
       {isLoading && <Preloader />}
       {!isLoading && noResult && <p className='movieslist__noresult'>Ничего не найдено</p>}
