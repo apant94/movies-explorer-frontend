@@ -107,20 +107,6 @@ function App() {
     })
   }
 
-  // function registration() {
-  //   navigate('/signin');
-  // }
-
-  // function authorization() {
-  //   navigate('/movies');
-  //   setLoggedIn(true);
-  // }
-
-  // function logout() {
-  //   setLoggedIn(false);
-  //   navigate('/');
-  // }
-
   return (
     <div className="page">
     <CurrentUserContext.Provider value={currentUser}>
@@ -128,8 +114,8 @@ function App() {
         <NavTab loggedIn={loggedIn} />
       </Header>
       <Routes>
-        <Route path='/signup' element={<Register registration={registration} />} />
-        <Route path='/signin' element={!loggedIn ? (<Login authorization={authorization} />) : (<Navigate to='/' replace />) } />
+        <Route path='/signup' element={!loggedIn ? (<Register registration={registration} />) : (<Navigate to='/movies' replace />) } />
+        <Route path='/signin' element={!loggedIn ? (<Login authorization={authorization} />) : (<Navigate to='/movies' replace />) } />
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={
           <Movies 
