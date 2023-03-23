@@ -27,10 +27,12 @@ function Profile({ logout, handleProfile }) {
           <label htmlFor='name' className='profile__input-label'>Имя</label>
           <input className='profile__input' placeholder="Имя" name='name' type='text' value={values.name || ''} onChange={handleChange} minLength={'2'} maxLength={'20'} />
         </div>
+        <span className='profile__error'>{errors.name}</span>
         <div className='profile__input-wrapper'>
           <label htmlFor='email' className='profile__input-label'>E-mail</label>
           <input className='profile__input' placeholder="Почта" name='email' type='email' value={values.email || ''} onChange={handleChange} />
         </div>
+        <span className='profile__error'>{errors.email}</span>
         <button type='submit' className='profile__edit-btn'>Редактировать</button>
       </form>
       <button type='button' className='profile__exit-btn' onClick={logout}>Выйти из аккаунта</button>
