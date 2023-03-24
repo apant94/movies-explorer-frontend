@@ -4,9 +4,10 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
+import { useLocation } from 'react-router-dom';
 
-
-function Movies({ isLoading, setIsLoading, onLikeClick, onDeleteClick, loggedIn, currentUser }) {
+function Movies({ isLoading, setIsLoading, loggedIn, currentUser }) {
+  const { pathname } = useLocation();
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
   const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные фильмы по короткометражке и поиску 
@@ -126,14 +127,26 @@ function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
       handleShortMovies={handleShortMovies}
       shortMovies={shortMovies}
      />
-    <MoviesCardList 
-      movies={filteredOrShortMovies}
-      isLoading={isLoading} 
-      setIsLoading={setIsLoading}
-      noResult={noResult}
-      onLikeClick={saveMovie}
-      onDeleteClick={deleteMovie}
-    />
+     {pathname === '/movies' && (
+      <MoviesCardList 
+        movies={filteredOrShortMovies}
+        isLoading={isLoading} 
+        setIsLoading={setIsLoading}
+        noResult={noResult}
+        onLikeClick={saveMovie}
+        onDeleteClick={deleteMovie}
+      />
+     )}
+    {pathname === '/saved-movies' && (
+      <MoviesCardList 
+        movies={savedMovies}
+        isLoading={isLoading} 
+        setIsLoading={setIsLoading}
+        noResult={noResult}
+        onLikeClick={saveMovie}
+        onDeleteClick={deleteMovie}
+      />
+     )}
   </main>
   );
 }
