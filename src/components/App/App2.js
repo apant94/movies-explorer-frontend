@@ -21,7 +21,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
   const [isAuthOk, setIsAuthOk] = useState(true); // стейт успешности регистрации
   const [currentUser, setCurrentUser] = useState({}); // стейт пользователя
-  const [savedMovies, setSavedMovies] = useState([]); // стейт сохраненных фильмов (savedMoviesList)
 
 
 // Функциональность регистрации и авторизации
@@ -106,53 +105,6 @@ function App() {
     })
   }
 
-// Функциональность сохранения фильмов 
-  // сохранение фильма (handleSaveMovie)
-  function saveMovie(movie) {
-    mainApi
-    .saveMovie(movie)
-    .then((newMovie) => {
-      setSavedMovies([newMovie, ...savedMovies]);
-    })
-    .catch((err) => console.log(err))
-  }
-
-  // удаление фильма из сохраненных (handleDeleteMovie)
-  function deleteMovie(movie) {
-    const savedMovie = savedMovies.find((item) => item.movieId === movie.id || item.movieId === movie.movieId);
-
-    mainApi
-    .deleteMovie(savedMovie.data._id)
-    .then(() => {
-      const newMoviesList = savedMovies.filter(m => {
-        if (movie.id === m.movieId || movie.movieId === m.movieId) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-      setSavedMovies(newMoviesList);
-    })
-    .catch((err) => console.log(err))
-  }
-
-  // получение списка сохраненных фильмов (useEffect)
-  const fetchSavedMovies = () => {
-    mainApi
-      .getSavedMovies()
-      .then((data) => {
-        const UserMoviesList = data.filter(m => m.owner === currentUser._id);
-        setSavedMovies(UserMoviesList);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    if (loggedIn && currentUser) {
-      fetchSavedMovies();
-    }
-  }, [loggedIn, currentUser]);
-
   return (
     <div className="page">
     <CurrentUserContext.Provider value={currentUser}>
@@ -167,18 +119,14 @@ function App() {
           <Movies 
             isLoading={isLoading} 
             setIsLoading={setIsLoading}
-            savedMovies={savedMovies}
-            onLikeClick={saveMovie}
-            onDeleteClick={deleteMovie}
+            loggedIn={loggedIn}
           />} 
         />
         <Route path='/saved-movies' element={
-          <Movies
-            savedMovies={savedMovies}
-            onLikeClick={saveMovie}
-            onDeleteClick={deleteMovie}
-          />} 
-         />
+        <Movies
+          loggedIn={loggedIn}
+          currentUser={currentUser}
+         />} />
         <Route path='/profile' element={<Profile logout={logout} handleProfile={handleProfile} />} />
         <Route path='/*' element={<NotFoundError />} />
       </Routes>

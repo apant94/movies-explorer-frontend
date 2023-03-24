@@ -3,10 +3,11 @@ import { useState, useEffect, useContext } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
+import mainApi from '../../utils/MainApi';
 import { useLocation } from 'react-router-dom';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteClick }) {
+function Movies({ isLoading, setIsLoading, loggedIn }) {
   const { pathname } = useLocation();
   const currentUser = useContext(CurrentUserContext);
 
@@ -14,23 +15,23 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
   const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные фильмы по короткометражке и поиску (filteredMovies) 
   const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску (NotFound)
+  const [savedMovies, setSavedMovies] = useState([]); // стейт сохраненных фильмов (favoriteCards)
 
-// Поиск по всем фильмам 
   // фильтрация фильмов по запросу
-  function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
-    const moviesByQuery = movies.filter((movie) => {
-      const movieRu = String(movie.nameRU).toLowerCase();
-      const movieEn = String(movie.nameEN).toLowerCase();
-      const chosenMovie = userQuery.toLowerCase();
-      return movieRu.indexOf(chosenMovie) !== -1 || movieEn.indexOf(chosenMovie) !== -1;
-    });
-    // условие для состояния чекбокса с короткометражками
-    if (onShortMoviesCheckbox) {
-      return filterShortMovies(moviesByQuery);
-    } else {
-      return moviesByQuery;
-    }
+function filterMovies(movies, userQuery, onShortMoviesCheckbox) {
+  const moviesByQuery = movies.filter((movie) => {
+    const movieRu = String(movie.nameRU).toLowerCase();
+    const movieEn = String(movie.nameEN).toLowerCase();
+    const chosenMovie = userQuery.toLowerCase();
+    return movieRu.indexOf(chosenMovie) !== -1 || movieEn.indexOf(chosenMovie) !== -1;
+  });
+  // условие для состояния чекбокса с короткометражками
+  if (onShortMoviesCheckbox) {
+    return filterShortMovies(moviesByQuery);
+  } else {
+    return moviesByQuery;
   }
+}
 
   // поиск по массиву и установка состояния
   function handleSetFilteredMovies(movies, userQuery, onShortMoviesCheckbox) {
@@ -50,7 +51,7 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
   // поиск по запросу
   function handleSearchSubmit(inputValue) {
     localStorage.setItem('all_movies_search', inputValue);
-    localStorage.setItem('all_short_movies', shortMovies);
+    localStorage.setItem('all_short_search', shortMovies);
 
     setIsLoading(true);
     moviesApi
@@ -60,7 +61,7 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
       .finally(() => setIsLoading(false));
   }
 
-// Поиск по короткометражкам
+  // поиск по короткометражкам
   // фильтрация короткометражек по длительности
   function filterShortMovies(movies) {
     return movies.filter(movie => movie.duration < 40);
@@ -77,22 +78,53 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     localStorage.setItem('all_short_movies', !shortMovies);
   }
 
-// Отображение фильмов из локального хранилища
+// Функциональность сохранения фильмов 
+  // сохранение фильма (addFavoriteMovie)
+  function saveMovie(movie) {
+    mainApi
+    .saveMovie(movie)
+    .then((newMovie) => {
+      setSavedMovies([newMovie, ...savedMovies]);
+      localStorage.setItem('all_saved_movies', newMovie);
+    })
+    .catch((err) => console.log(err))
+  }
+
+  // удаление фильма из сохраненных (deleteFavoriteMovie )
+  function deleteMovie(movie) {
+    const savedMovie = savedMovies.find((item) => item.movieId === movie.id || item.movieId === movie.movieId);
+
+    mainApi
+    .deleteMovie(savedMovie.data._id)
+    .then(() => {
+      const newMoviesList = savedMovies.filter(m => {
+        if (movie.id === m.movieId || movie.movieId === m.movieId) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      setSavedMovies(newMoviesList);
+    })
+    .catch((err) => console.log(err))
+  }
+
+  // получение списка сохраненных фильмов (fetchFavoriteMovies )
+  const fetchSavedMovies = () => {
+    mainApi
+      .getSavedMovies()
+      .then((data) => {
+        const UserMoviesList = data.filter(movie => movie.owner === currentUser._id);
+        setSavedMovies(UserMoviesList);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
-    if (localStorage.getItem('all_movies')) {
-      const movies = JSON.parse(
-        localStorage.getItem('all_movies')
-      );
-      setFilteredMovies(movies);
-      if (
-        localStorage.getItem('all_short_movies') === 'true'
-      ) {
-        setFilteredOrShortMovies(filterShortMovies(movies));
-      } else {
-        setFilteredOrShortMovies(movies);
-      }
+    if (loggedIn) {
+      fetchSavedMovies();
     }
-  }, [currentUser]);
+  }, [loggedIn]);
   
   return (
   <main className='movies'>
@@ -104,8 +136,11 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
      {pathname === '/movies' && (
       <MoviesCardList 
         movies={filteredOrShortMovies}
-        onLikeClick={onLikeClick}
-        onDeleteClick={onDeleteClick}
+        isLoading={isLoading} 
+        setIsLoading={setIsLoading}
+        noResult={noResult}
+        onLikeClick={saveMovie}
+        onDeleteClick={deleteMovie}
       />
      )}
     {pathname === '/saved-movies' && (
@@ -113,8 +148,9 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
         movies={savedMovies}
         isLoading={isLoading} 
         setIsLoading={setIsLoading}
-        onLikeClick={onLikeClick}
-        onDeleteClick={onDeleteClick}
+        noResult={noResult}
+        onLikeClick={saveMovie}
+        onDeleteClick={deleteMovie}
       />
      )}
   </main>

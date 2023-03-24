@@ -1,7 +1,8 @@
 class MainApi {
-  constructor(baseUrl, { headers }) {
+  constructor(baseUrl, moviesUrl, { headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._moviesUrl = moviesUrl;
   }
 
   _checkStatus(res) {
@@ -37,9 +38,9 @@ class MainApi {
           duration: data.duration,
           year: data.year,
           description: data.description,
-          image: `${this._baseUrl}${data.image.url}`,
+          image: `${this._moviesUrl}${data.image.url}`,
           trailerLink: data.trailerLink,
-          thumbnail: `${this._baseUrl}${data.image.url}`,
+          thumbnail: `${this._moviesUrl}${data.image.url}`,
           movieId: data.id,
           nameRU: data.nameRU,
           nameEN: data.nameEN,
@@ -66,6 +67,7 @@ class MainApi {
 const mainApi = new MainApi(
   // "http://localhost:3000",
   "https://api.apantdiploma.nomoredomains.work",
+  "https://api.nomoreparties.co",
   {
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,

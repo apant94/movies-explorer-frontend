@@ -26,6 +26,12 @@ function MoviesCard({ movie, onLikeClick, onDeleteClick }) {
     };
   }
 
+  function handleDeleteClick(e) {
+    e.preventDefault();
+    onDeleteClick(movie);
+    setIsLiked(false);
+  }
+
   function convertTimeDuration(mins) {
     let hours = Math.trunc(mins/60);
     let minutes = mins % 60;
@@ -37,7 +43,8 @@ function MoviesCard({ movie, onLikeClick, onDeleteClick }) {
       <div className='moviescard__container'>
         <h2 className='moviescard__name'>{nameRU}</h2>
         <p className='moviescard__duration'>{convertTimeDuration(duration)}</p>
-        <button onClick={handleLikeClick} className={cardLikeButtonClassName} type='button'></button>
+        {pathname === '/movies' && (<button onClick={handleLikeClick} className={cardLikeButtonClassName} type='button'></button>)}
+        {pathname === '/saved-movies' && (<button onClick={handleDeleteClick} className='moviescard__delete' type='button'></button>)}
       </div>
       <a href={trailerLink} target="_blank" rel="noreferrer">
         <img className='moviescard__image' src={image} alt='Постер к фильму' />
