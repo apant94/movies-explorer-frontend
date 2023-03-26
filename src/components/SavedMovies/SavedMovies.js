@@ -8,7 +8,7 @@ function SavedMovies({ savedMovies, onDeleteClick, isLoading, setIsLoading }) {
   const currentUser = useContext(CurrentUserContext);
 
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
-  const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску (NotFound)
+  const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску
   const [showedMovies, setShowedMovies] = useState(savedMovies); // показываемывые сохраненные фильмы
   const [filteredMovies, setFilteredMovies] = useState(showedMovies); // отфильтрованные по запросу сохраненные фильмы
 

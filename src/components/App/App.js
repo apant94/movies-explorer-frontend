@@ -27,7 +27,7 @@ function App() {
     text: '',
   }); // стейт попапа с информацией об успехе или ошибке
   const [currentUser, setCurrentUser] = useState({}); // стейт пользователя
-  const [savedMovies, setSavedMovies] = useState([]); // стейт сохраненных фильмов (savedMoviesList)
+  const [savedMovies, setSavedMovies] = useState([]); // стейт сохраненных фильмов
 
 
 // Функциональность регистрации и авторизации
@@ -143,7 +143,6 @@ function App() {
 // Функциональность сохранения фильмов 
   // сохранение фильма 
   function saveMovie(movie) {
-    console.log(movie);
     mainApi
     .saveMovie(movie)
     .then((newMovie) => {

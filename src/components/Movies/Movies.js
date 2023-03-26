@@ -8,10 +8,10 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteClick, setIsInfoTooltip }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам (initialMovies)
+  const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
   const [shortMovies, setShortMovies] = useState(false); // стейт чекбокса короткометражек
-  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные фильмы по короткометражке и поиску (filteredMovies) 
-  const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску (NotFound)
+  const [filteredOrShortMovies, setFilteredOrShortMovies] = useState([]); // отфильтрованные фильмы по короткометражке и поиску
+  const [noResult, setNoResult] = useState(false); // стейт отсутствия результатов по поиску
 
 // Поиск по всем фильмам 
   // фильтрация фильмов по запросу
