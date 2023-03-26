@@ -15,6 +15,7 @@ import InfoTooltip from '../InfoToolTip/InfoToolTip';
 import * as auth from "../../utils/Auth.js";
 import mainApi from '../../utils/MainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const navigate = useNavigate();
@@ -194,24 +195,35 @@ function App() {
         <Route path='/signin' element={!loggedIn ? (<Login authorization={authorization} />) : (<Navigate to='/movies' replace />) } />
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={
-          <Movies 
-            isLoading={isLoading} 
-            setIsLoading={setIsLoading}
-            savedMovies={savedMovies}
-            onLikeClick={saveMovie}
-            onDeleteClick={deleteMovie}
-            setIsInfoTooltip={setIsInfoTooltip}
-          />} 
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Movies 
+              isLoading={isLoading} 
+              setIsLoading={setIsLoading}
+              savedMovies={savedMovies}
+              onLikeClick={saveMovie}
+              onDeleteClick={deleteMovie}
+              setIsInfoTooltip={setIsInfoTooltip}
+            />
+          </ProtectedRoute>} 
         />
         <Route path='/saved-movies' element={
-          <SavedMovies
-            savedMovies={savedMovies}
-            onDeleteClick={deleteMovie}
-            isLoading={isLoading} 
-            setIsLoading={setIsLoading}
-          />} 
+          <ProtectedRoute loggedIn={loggedIn}>
+            <SavedMovies
+              savedMovies={savedMovies}
+              onDeleteClick={deleteMovie}
+              isLoading={isLoading} 
+              setIsLoading={setIsLoading}
+            />
+          </ProtectedRoute>} 
          />
-        <Route path='/profile' element={<Profile logout={logout} handleProfile={handleProfile} />} />
+        <Route path='/profile' element={
+          <ProtectedRoute loggedIn={loggedIn}>
+            <Profile 
+            logout={logout} 
+            handleProfile={handleProfile} 
+            />
+          </ProtectedRoute>} 
+        />
         <Route path='/*' element={<NotFoundError />} />
       </Routes>
       <Footer />
