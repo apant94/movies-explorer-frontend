@@ -87,6 +87,21 @@
   }
 }
 
+.moviescard__like:hover {
+  cursor: pointer;
+}
+
+.moviescard__like_active {
+  background-image: url(../../images/moviescard-like-active.png);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  padding: 0;
+  height: 12px;
+  width: 14px;
+  border: none;
+}
+
 .moviescard__delete {
   background-image: url(../../images/moviescard-delete.png);
   background-repeat: no-repeat;
@@ -106,21 +121,6 @@
     top: 0;
     right: 0;
   }
-}
-
-.moviescard__like:hover {
-  cursor: pointer;
-}
-
-.moviescard__like_active {
-  background-image: url(../../images/moviescard-like-active.png);
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size: contain;
-  padding: 0;
-  height: 12px;
-  width: 14px;
-  border: none;
 }
 
 .moviescard__image {
