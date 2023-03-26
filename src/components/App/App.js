@@ -7,9 +7,11 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import NotFoundError from '../NotFoundError/NotFoundError';
 import Footer from '../Footer/Footer';
+import InfoTooltip from '../InfoToolTip/InfoToolTip';
 import * as auth from "../../utils/Auth.js";
 import mainApi from '../../utils/MainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
@@ -19,7 +21,11 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false); // стейт статуса авторизации юзера
   const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
-  const [isAuthOk, setIsAuthOk] = useState(true); // стейт успешности регистрации
+  const [isInfoTooltip, setIsInfoTooltip] = useState({
+    isOpen: false,
+    isOk: true,
+    text: '',
+  }); // стейт попапа с информацией об успехе или ошибке
   const [currentUser, setCurrentUser] = useState({}); // стейт пользователя
   const [savedMovies, setSavedMovies] = useState([]); // стейт сохраненных фильмов (savedMoviesList)
 
@@ -29,14 +35,20 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        // setIsTooltipOpen(true);
-        setIsAuthOk(true);
+        setIsInfoTooltip({
+          isOpen: true,
+          isOk: true,
+          text: 'Вы успешно зарегистрированы!',
+        });
         navigate('/signin');
       })
       .catch((err) => {
         console.log(err);
-        // setIsTooltipOpen(true);
-        setIsAuthOk(false);
+        setIsInfoTooltip({
+          isOpen: true,
+          isOk: false,
+          text: '',
+        });
       });
   }
 
@@ -44,15 +56,24 @@ function App() {
     auth
       .login(email, password)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        setLoggedIn(true);
-        navigate('/movies');
-        setIsAuthOk(true);
-
+        setIsInfoTooltip({
+          isOpen: true,
+          isOk: true,
+          text: 'Добро пожаловать',
+        });
+        setTimeout(function() {
+          localStorage.setItem("jwt", res.token);
+          setLoggedIn(true);
+          navigate('/movies');
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
-        setIsAuthOk(false);
+        setIsInfoTooltip({
+          isOpen: true,
+          isOk: false,
+          text: '',
+        });
       });
   }
 
@@ -92,22 +113,35 @@ function App() {
     }
   }, [loggedIn]);
 
+// Функциональность информационного попапа
+  function handleClosePopup() {
+    setIsInfoTooltip({ ...isInfoTooltip, isOpen: false });
+  }
+
 // Функциональность страницы профиля
   function handleProfile({ name, email }) {
     mainApi
     .setUser(name, email)
     .then((newUserData) => {
       setCurrentUser(newUserData);
-      setIsAuthOk(true);
+      setIsInfoTooltip({
+        isOpen: true,
+        isOk: true,
+        text: 'Вы успешно отредактировали профиль!',
+      });
     })
     .catch((err) => {
       console.log(err);
-      setIsAuthOk(false);
+      setIsInfoTooltip({
+        isOpen: true,
+        isOk: false,
+        text: '',
+      });
     })
   }
 
 // Функциональность сохранения фильмов 
-  // сохранение фильма (handleSaveMovie)
+  // сохранение фильма 
   function saveMovie(movie) {
     mainApi
     .saveMovie(movie)
@@ -117,12 +151,12 @@ function App() {
     .catch((err) => console.log(err))
   }
 
-  // удаление фильма из сохраненных (handleDeleteMovie)
+  // удаление фильма из сохраненных 
   function deleteMovie(movie) {
     const savedMovie = savedMovies.find((item) => item.movieId === movie.id || item.movieId === movie.movieId);
 
     mainApi
-    .deleteMovie(savedMovie.data._id)
+    .deleteMovie(savedMovie._id)
     .then(() => {
       const newMoviesList = savedMovies.filter(m => {
         if (movie.id === m.movieId || movie.movieId === m.movieId) {
@@ -136,22 +170,18 @@ function App() {
     .catch((err) => console.log(err))
   }
 
-  // получение списка сохраненных фильмов (useEffect)
-  const fetchSavedMovies = () => {
-    mainApi
+  // получение списка сохраненных фильмов 
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
       .getSavedMovies()
-      .then((data) => {
-        const UserMoviesList = data.filter(m => m.owner === currentUser._id);
+      .then((res) => {
+        const UserMoviesList = res.data.filter(m => m.owner === currentUser._id);
         setSavedMovies(UserMoviesList);
       })
       .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    if (loggedIn && currentUser) {
-      fetchSavedMovies();
     }
-  }, [loggedIn, currentUser]);
+  }, [loggedIn]);
 
   return (
     <div className="page">
@@ -170,19 +200,29 @@ function App() {
             savedMovies={savedMovies}
             onLikeClick={saveMovie}
             onDeleteClick={deleteMovie}
+            setIsInfoTooltip={setIsInfoTooltip}
           />} 
         />
         <Route path='/saved-movies' element={
-          <Movies
+          <SavedMovies
             savedMovies={savedMovies}
-            onLikeClick={saveMovie}
             onDeleteClick={deleteMovie}
+            isLoading={isLoading} 
+            setIsLoading={setIsLoading}
           />} 
          />
         <Route path='/profile' element={<Profile logout={logout} handleProfile={handleProfile} />} />
         <Route path='/*' element={<NotFoundError />} />
       </Routes>
       <Footer />
+
+      <InfoTooltip
+        isOpen={isInfoTooltip.isOpen}
+        onClose={handleClosePopup}
+        isOk={isInfoTooltip.isOk}
+        text={isInfoTooltip.text}
+      />
+
     </CurrentUserContext.Provider>
     </div>
   );

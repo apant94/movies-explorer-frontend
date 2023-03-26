@@ -1,0 +1,16 @@
+.savedmovies {
+  width: 89%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .savedmovies {
+    width: 92%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .savedmovies {
+    width: 91%;
+  }
+}

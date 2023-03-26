@@ -12,7 +12,7 @@ function Profile({ logout, handleProfile }) {
     handleProfile(values);
   }
 
-  // подтягиваем из апи данные юзера для формы
+  // подтягиваем из контекста данные юзера для формы
   useEffect(() => {
     if (currentUser) {
       resetForm(currentUser, {}, true);
@@ -22,7 +22,7 @@ function Profile({ logout, handleProfile }) {
   return(
     <main className='profile'>
       <h2 className='profile__greetings'>{`Привет, ${currentUser.name}!`}</h2>
-      <form className='profile__form' onClick={handleSubmit}>
+      <form className='profile__form' onSubmit={handleSubmit}>
         <div className='profile__input-wrapper'>
           <label htmlFor='name' className='profile__input-label'>Имя</label>
           <input className='profile__input' placeholder="Имя" name='name' type='text' value={values.name || ''} onChange={handleChange} minLength={'2'} maxLength={'20'} />

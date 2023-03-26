@@ -3,11 +3,9 @@ import { useState, useEffect, useContext } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
-import { useLocation } from 'react-router-dom';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteClick }) {
-  const { pathname } = useLocation();
+function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteClick, setIsInfoTooltip }) {
   const currentUser = useContext(CurrentUserContext);
 
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам (initialMovies)
@@ -56,7 +54,14 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     moviesApi
       .getMoviesCards()
       .then((movies) => handleSetFilteredMovies(movies, inputValue, shortMovies))
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        setIsInfoTooltip({
+          isOpen: true,
+          isOk: false,
+          text: '',
+        });
+      })
       .finally(() => setIsLoading(false));
   }
 
@@ -77,22 +82,20 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     localStorage.setItem('all_short_movies', !shortMovies);
   }
 
-// Отображение фильмов из локального хранилища
+  // проверка чекбокса в локальном хранилище
   useEffect(() => {
-    if (localStorage.getItem('all_movies')) {
-      const movies = JSON.parse(
-        localStorage.getItem('all_movies')
-      );
-      setFilteredMovies(movies);
-      if (
-        localStorage.getItem('all_short_movies') === 'true'
-      ) {
-        setFilteredOrShortMovies(filterShortMovies(movies));
-      } else {
-        setFilteredOrShortMovies(movies);
-      }
+    if (localStorage.getItem(`all_short_movies`) === 'true') {
+      setShortMovies(true);
+    } else {
+      setShortMovies(false);
     }
   }, [currentUser]);
+
+// Отображение сохраненных фильмов
+  useEffect(() => {
+    setFilteredMovies(savedMovies);
+    savedMovies.length !== 0 ? setNoResult(false) : setNoResult(true);
+  }, [savedMovies]);
   
   return (
   <main className='movies'>
@@ -101,22 +104,15 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
       handleShortMovies={handleShortMovies}
       shortMovies={shortMovies}
      />
-     {pathname === '/movies' && (
-      <MoviesCardList 
-        movies={filteredOrShortMovies}
-        onLikeClick={onLikeClick}
-        onDeleteClick={onDeleteClick}
-      />
-     )}
-    {pathname === '/saved-movies' && (
-      <MoviesCardList 
-        movies={savedMovies}
-        isLoading={isLoading} 
-        setIsLoading={setIsLoading}
-        onLikeClick={onLikeClick}
-        onDeleteClick={onDeleteClick}
-      />
-     )}
+    <MoviesCardList 
+      movies={filteredOrShortMovies}
+      onLikeClick={onLikeClick}
+      onDeleteClick={onDeleteClick}
+      savedMovies={savedMovies}
+      isLoading={isLoading} 
+      setIsLoading={setIsLoading}
+      noResult={noResult}
+    />
   </main>
   );
 }

@@ -2,13 +2,13 @@ import './MoviesCard.css';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function MoviesCard({ movie, savedMovie, onLikeClick, onDeleteClick }) {
+function MoviesCard({ movie, onLikeClick, onDeleteClick }) {
   const [ isLiked, setIsLiked ] = useState(false);
-  const { pathname } = useLocation();
-  const image = pathname === `${"/movies"}` ? `https://api.nomoreparties.co${movie.image.url}` : `${movie.image}`;
-  const nameRU = pathname === `${"/saved-movies"}` ? `${movie.nameRU}` : `${movie.nameRU}`;
-  const trailerLink = pathname === `${"/saved-movies"}` ? `${movie.trailerLink}` : `${movie.trailerLink}`;
-  const duration = pathname === `${"/saved-movies"}` ? `${movie.duration}` : `${movie.duration}`;
+  const {pathname} = useLocation();
+  const image = pathname === `${"/movies"}` ? `https://api.nomoreparties.co${movie.image.url}`: `${movie.data.image}`;
+  const nameRU = pathname === `${"/saved-movies"}` ? `${movie.data.nameRU}`: `${movie.nameRU}`;
+  const trailerLink = pathname === `${"/saved-movies"}` ? `${movie.data.trailerLink}`: `${movie.trailerLink}`;
+  const duration = pathname === `${"/saved-movies"}` ? `${movie.data.duration}`: `${movie.duration}`;
 
   const cardLikeButtonClassName = (
     `moviescard__like ${isLiked ? 'moviescard__like_active' : 'moviescard__like'}`
