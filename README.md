@@ -34,3 +34,4 @@
 + [Макет](https://www.figma.com/file/dxveBHjdanDg2Nf3xO6MIV/Diploma?node-id=891%3A3857&t=pYxrJ3t7QAqiZWAo-1)
 + [Cайт]()
 + [Репозиторий с бэкендом](https://github.com/apant94/movies-explorer-api)
++ [Пулреквест](https://github.com/apant94/movies-explorer-frontend/pull/2)
