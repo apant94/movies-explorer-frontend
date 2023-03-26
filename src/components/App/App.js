@@ -143,10 +143,11 @@ function App() {
 // Функциональность сохранения фильмов 
   // сохранение фильма 
   function saveMovie(movie) {
+    console.log(movie);
     mainApi
     .saveMovie(movie)
     .then((newMovie) => {
-      setSavedMovies([newMovie, ...savedMovies]);
+      setSavedMovies([newMovie.data, ...savedMovies]);
     })
     .catch((err) => console.log(err))
   }
