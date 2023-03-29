@@ -72,7 +72,7 @@ function SavedMovies({ savedMovies, onDeleteClick, isLoading, setIsLoading }) {
     }
   }
 
-  // короткометражки в локальном хранилище
+  // чекбокс короткометражек в локальном хранилище
   useEffect(() => {
     if (localStorage.getItem(`all_short_saved_movies`) === 'true') {
       setShortMovies(true);
