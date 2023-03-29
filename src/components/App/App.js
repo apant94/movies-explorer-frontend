@@ -82,9 +82,9 @@ function App() {
   function logout() {
     setLoggedIn(false);
     navigate('/');
-    localStorage.removeItem("jwt");
+    // localStorage.removeItem("jwt");
     setCurrentUser({});
-    // localStorage.clear();
+    localStorage.clear();
   }
 
   // проверка токена и авторизация
