@@ -84,6 +84,7 @@ function App() {
     navigate('/');
     localStorage.removeItem("jwt");
     setCurrentUser({});
+    // localStorage.clear();
   }
 
   // проверка токена и авторизация
@@ -183,6 +184,11 @@ function App() {
       .catch((err) => console.log(err));
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    localStorage.setItem('saved_movies', JSON.stringify(savedMovies));
+    console.log(localStorage.getItem('saved_movies'));
+  }, [currentUser, savedMovies])
 
   return (
     <div className="page">

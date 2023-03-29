@@ -85,7 +85,11 @@ function SavedMovies({ savedMovies, onDeleteClick, isLoading, setIsLoading }) {
 
   // Отображение сохраненных фильмов
   useEffect(() => {
+    if (localStorage.getItem('saved_movies')) {
+      setFilteredMovies(JSON.parse(localStorage.getItem('saved_movies')))
+    } else {
     setFilteredMovies(savedMovies);
+    }
     savedMovies.length !== 0 ? setNoResult(false) : setNoResult(true);
   }, [savedMovies]);
 
