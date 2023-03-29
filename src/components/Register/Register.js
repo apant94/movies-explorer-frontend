@@ -6,7 +6,7 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 
 function Register({ registration }) {
-  const { values, handleChange, errors } = useFormAndValidation();
+  const { values, handleChange, errors, isValid } = useFormAndValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,7 +15,7 @@ function Register({ registration }) {
 
   return(
     <>
-      <AuthForm greetings={'Добро пожаловать!'} onSubmit={handleSubmit} submitText={'Зарегистрироваться'}>
+      <AuthForm greetings={'Добро пожаловать!'} onSubmit={handleSubmit} submitText={'Зарегистрироваться'} isValid={isValid}>
         <AuthInput name='name' title={'Имя'} type={'text'} value={values.name || ''} minLength = {'2'} maxLength = {'20'} required onChange={handleChange} errors={errors.name} />
         <AuthInput name='email' title={'E-mail'} type={'email'} value={values.email || ''} required onChange={handleChange} errors={errors.email} />
         <AuthInput name='password' title={'Пароль'} type={'password'} value={values.password || ''} required onChange={handleChange} errors={errors.password} />

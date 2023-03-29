@@ -2,7 +2,7 @@ import './AuthForm.css';
 import { Link } from 'react-router-dom';
 import LogoPath from '../../images/header-logo.svg';
 
-function AuthForm({greetings, children, submitText, onSubmit}) {
+function AuthForm({ greetings, children, submitText, onSubmit, isValid }) {
   return(
     <div className='authform'>
       <Link to='/'>
@@ -13,7 +13,7 @@ function AuthForm({greetings, children, submitText, onSubmit}) {
         <div className='aithform__inputs'>
           {children}
         </div>
-        <button className='authform__submit' type='submit'>{submitText}</button>
+        <button className={`authform__submit ${!isValid && 'authform__submit_disabled'}`} type='submit' disabled={!isValid} >{submitText}</button>
       </form>
     </div>
   )
