@@ -35,13 +35,15 @@ function App() {
   function registration(name, email, password) {
     auth
       .register(name, email, password)
-      .then(() => {
+      .then((user) => {
         setIsInfoTooltip({
           isOpen: true,
           isOk: true,
           text: 'Вы успешно зарегистрированы!',
         });
-        navigate('/signin');
+        console.log(user);
+        // navigate('/signin');
+        authorization(email, password);
       })
       .catch((err) => {
         console.log(err);
@@ -62,8 +64,8 @@ function App() {
           isOk: true,
           text: 'Добро пожаловать',
         });
+        localStorage.setItem("jwt", res.token);
         setTimeout(function() {
-          localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           navigate('/movies');
         }, 2000);

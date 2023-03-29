@@ -5,7 +5,7 @@ import AuthInput from '../AuthInput/AuthInput';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 function Login({authorization}) {
-  const { values, handleChange, errors } = useFormAndValidation();
+  const { values, handleChange, errors, isValid } = useFormAndValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,7 +14,7 @@ function Login({authorization}) {
 
   return(
     <>
-      <AuthForm greetings={'Рады видеть!'} onSubmit={handleSubmit} submitText={'Войти'}>
+      <AuthForm greetings={'Рады видеть!'} onSubmit={handleSubmit} submitText={'Войти'} isValid={isValid}>
         <AuthInput name='email' title={'E-mail'} type={'email'} value={values.email || ''} required onChange={handleChange} errors={errors.email} />
         <AuthInput name='password' title={'Пароль'} type={'password'} value={values.password || ''} required onChange={handleChange} errors={errors.password} />
       </AuthForm>
