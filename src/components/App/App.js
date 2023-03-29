@@ -203,6 +203,7 @@ function App() {
               onLikeClick={saveMovie}
               onDeleteClick={deleteMovie}
               setIsInfoTooltip={setIsInfoTooltip}
+              loggedIn={loggedIn}
             />
           </ProtectedRoute>} 
         />

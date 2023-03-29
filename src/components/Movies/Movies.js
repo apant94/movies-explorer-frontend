@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesApi from '../../utils/MoviesApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteClick, setIsInfoTooltip }) {
+function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteClick, setIsInfoTooltip, loggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
   const [filteredMovies, setFilteredMovies] = useState([]); // стэйт результатов поиска по фильмам
@@ -43,7 +43,9 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     setFilteredMovies(moviesList);
     setFilteredOrShortMovies(onShortMoviesCheckbox ? filterShortMovies(moviesList) : moviesList);
     localStorage.setItem(`all_movies`, JSON.stringify(moviesList));
+    console.log(JSON.stringify(moviesList))
   }
+
 
   // поиск по запросу
   function handleSearchSubmit(inputValue) {
@@ -91,11 +93,10 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     }
   }, [currentUser]);
 
-// Отображение сохраненных фильмов
+  // Отображение фильмов по запросу из локального хранилища
   useEffect(() => {
-    setFilteredMovies(savedMovies);
-    savedMovies.length !== 0 ? setNoResult(false) : setNoResult(true);
-  }, [savedMovies]);
+    setFilteredOrShortMovies(JSON.parse(localStorage.getItem(`all_movies`)));
+  }, [loggedIn]);
   
   return (
   <main className='movies'>

@@ -83,6 +83,12 @@ function SavedMovies({ savedMovies, onDeleteClick, isLoading, setIsLoading }) {
     }
   }, [savedMovies, currentUser]);
 
+  // Отображение сохраненных фильмов
+  useEffect(() => {
+    setFilteredMovies(savedMovies);
+    savedMovies.length !== 0 ? setNoResult(false) : setNoResult(true);
+  }, [savedMovies]);
+
   return (
     <main className='savedmovies'>
       <SearchForm  
