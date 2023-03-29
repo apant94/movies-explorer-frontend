@@ -43,7 +43,6 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     setFilteredMovies(moviesList);
     setFilteredOrShortMovies(onShortMoviesCheckbox ? filterShortMovies(moviesList) : moviesList);
     localStorage.setItem(`all_movies`, JSON.stringify(moviesList));
-    console.log(JSON.stringify(moviesList))
   }
 
 
@@ -93,10 +92,18 @@ function Movies({ isLoading, setIsLoading, savedMovies, onLikeClick, onDeleteCli
     }
   }, [currentUser]);
 
-  // Отображение фильмов по запросу из локального хранилища
+  // Отображение ранее запрошенных фильмов из локального хранилища
   useEffect(() => {
-    setFilteredOrShortMovies(JSON.parse(localStorage.getItem(`all_movies`)));
-  }, [loggedIn]);
+    if (localStorage.getItem(`all_movies`)) {
+      const movies = JSON.parse(localStorage.getItem(`all_movies`));
+      setFilteredMovies(movies);
+      if (localStorage.getItem(`all_short_movies`) === 'true') {
+        setFilteredOrShortMovies(filterShortMovies(movies));
+      } else {
+        setFilteredOrShortMovies(movies);
+      }
+    }
+  }, [currentUser]);
   
   return (
   <main className='movies'>

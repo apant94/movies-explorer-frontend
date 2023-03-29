@@ -179,6 +179,7 @@ function App() {
       .then((res) => {
         const UserMoviesList = res.data.filter(m => m.owner === currentUser._id);
         setSavedMovies(UserMoviesList);
+        localStorage.setItem('saved_movies', JSON.stringify(savedMovies));
       })
       .catch((err) => console.log(err));
     }
