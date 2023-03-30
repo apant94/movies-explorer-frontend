@@ -1,5 +1,5 @@
 import './App.css';
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import NavTab from '../NavTab/NavTab';
@@ -19,6 +19,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [loggedIn, setLoggedIn] = useState(false); // стейт статуса авторизации юзера
   const [isLoading, setIsLoading] = useState(false); //стэйт лоадера
@@ -92,13 +93,14 @@ function App() {
   // проверка токена и авторизация
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
+    const path = location.pathname;
 
     if (jwt) {
       mainApi
         .getUser()
         .then((data) => {
           setLoggedIn(true);
-          navigate('/');
+          navigate(path);
           setCurrentUser(data);
         })
         .catch((err) => {
