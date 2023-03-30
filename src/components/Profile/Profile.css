@@ -102,6 +102,10 @@
   }
 }
 
+.profile__edit-btn_disabled {
+  opacity: .9;
+}
+
 .profile__exit-btn {
   background-color: transparent;
   border: none;

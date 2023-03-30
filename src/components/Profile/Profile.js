@@ -5,7 +5,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Profile({ logout, handleProfile }) {
   const currentUser = useContext(CurrentUserContext);
-  const { values, handleChange, errors, resetForm } = useFormAndValidation();
+  const { values, handleChange, errors, resetForm, isValid } = useFormAndValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,6 +18,8 @@ function Profile({ logout, handleProfile }) {
       resetForm(currentUser, {}, true);
     }
   }, [currentUser, resetForm]);
+
+  const notValidForm = (!isValid || (currentUser.name === values.name && currentUser.email === values.email));
 
   return(
     <main className='profile'>
@@ -33,7 +35,7 @@ function Profile({ logout, handleProfile }) {
           <input className='profile__input' placeholder="Почта" name='email' type='email' value={values.email || ''} onChange={handleChange} />
         </div>
         <span className='profile__error'>{errors.email}</span>
-        <button type='submit' className='profile__edit-btn'>Редактировать</button>
+        <button type='submit' className={`profile__edit-btn ${notValidForm && 'profile__edit-btn_disabled'}`} disabled={notValidForm} >Редактировать</button>
       </form>
       <button type='button' className='profile__exit-btn' onClick={logout}>Выйти из аккаунта</button>
     </main>

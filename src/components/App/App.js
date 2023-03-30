@@ -189,7 +189,6 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('saved_movies', JSON.stringify(savedMovies));
-    console.log(localStorage.getItem('saved_movies'));
   }, [currentUser, savedMovies])
 
   return (
