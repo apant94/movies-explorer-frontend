@@ -66,10 +66,8 @@ function App() {
           text: 'Добро пожаловать',
         });
         localStorage.setItem("jwt", res.token);
-        setTimeout(function() {
-          setLoggedIn(true);
-          navigate('/movies');
-        }, 2000);
+        setLoggedIn(true);
+        navigate('/movies');
       })
       .catch((err) => {
         console.log(err);
@@ -85,7 +83,6 @@ function App() {
   function logout() {
     setLoggedIn(false);
     navigate('/');
-    // localStorage.removeItem("jwt");
     setCurrentUser({});
     localStorage.clear();
   }

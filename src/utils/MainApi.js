@@ -1,7 +1,7 @@
 class MainApi {
-  constructor(baseUrl, moviesUrl, { headers }) {
+  constructor(baseUrl, moviesUrl) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
+    // this._headers = headers;
     this._moviesUrl = moviesUrl;
   }
 
@@ -23,7 +23,10 @@ class MainApi {
   setUser(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ name, email }),
     }).then(this._checkStatus);
   }
@@ -31,7 +34,10 @@ class MainApi {
   saveMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
           country: data.country,
           director: data.director,
@@ -51,14 +57,18 @@ class MainApi {
   getSavedMovies() {
     return fetch(`${this._baseUrl}/movies`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkStatus);
   }
 
   deleteMovie(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
         method: 'DELETE',
-        headers: this._headers,
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        },
     })
     .then(this._checkResponse)
   }
@@ -68,11 +78,6 @@ const mainApi = new MainApi(
   // "http://localhost:3000",
   "https://api.apantdiploma.nomoredomains.work",
   "https://api.nomoreparties.co",
-  {
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    "Content-Type": "application/json",
-  },
-});
+);
 
 export default mainApi;
