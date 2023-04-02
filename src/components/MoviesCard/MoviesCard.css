@@ -102,6 +102,27 @@
   border: none;
 }
 
+.moviescard__delete {
+  background-image: url(../../images/moviescard-delete.png);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  padding: 0;
+  height: 8px;
+  width: 8px;
+  transition: .2s;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+  .moviescard__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
 .moviescard__image {
   height: 122px;
   width: 220px;

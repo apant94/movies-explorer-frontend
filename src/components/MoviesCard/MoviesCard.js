@@ -1,27 +1,38 @@
 import './MoviesCard.css';
-import { useState } from 'react';
-import MoviePath from '../../images/moviescard-image.jpg';
+import { useLocation } from 'react-router-dom';
 
-function MoviesCard() {
-  const [ isLiked, setIsLiked ] = useState(false);
+function MoviesCard({ movie, savedMovie, onLikeClick, onDeleteClick }) {
+  const { pathname } = useLocation();
+  const image = pathname === `${"/movies"}` ? `https://api.nomoreparties.co${movie.image.url}` : `${movie.image}`;
+  const nameRU = pathname === `${"/saved-movies"}` ? `${movie.nameRU}` : `${movie.nameRU}`;
+  const trailerLink = pathname === `${"/saved-movies"}` ? `${movie.trailerLink}` : `${movie.trailerLink}`;
+  const duration = pathname === `${"/saved-movies"}` ? `${movie.duration}` : `${movie.duration}`;
 
-  const cardLikeButtonClassName = (
-    `moviescard__like ${isLiked ? 'moviescard__like_active' : 'moviescard__like'}`
-  );
+  function handleLikeClick() {
+    onLikeClick(movie);
+  }
 
-  function handleLikeClick(e) {
-    e.preventDefault();
-    e.target.classList.toggle('moviescard__like_active');
+  function handleDeleteClick() {
+    onDeleteClick(movie);
+  }
+
+  function convertTimeDuration(mins) {
+    let hours = Math.trunc(mins/60);
+    let minutes = mins % 60;
+    return hours + 'ч ' + minutes + 'м';
   }
 
   return(
     <article className='moviescard'>
       <div className='moviescard__container'>
-        <h2 className='moviescard__name'>33 слова о дизайне</h2>
-        <p className='moviescard__duration'>1ч 42м</p>
-        <button onClick={handleLikeClick} className={cardLikeButtonClassName} type='button'></button>
+        <h2 className='moviescard__name'>{nameRU}</h2>
+        <p className='moviescard__duration'>{convertTimeDuration(duration)}</p>
+        {pathname === '/movies' && (<button onClick={savedMovie ? handleDeleteClick : handleLikeClick} className={`moviescard__like${savedMovie ? '_active' : ''}`} type='button'></button>)}
+        {pathname === '/saved-movies' && (<button onClick={handleDeleteClick} className='moviescard__delete' type='button'></button>)}
       </div>
-      <img className='moviescard__image' src={MoviePath} alt='Постер к фильму' />
+      <a href={trailerLink} target="_blank" rel="noreferrer">
+        <img className='moviescard__image' src={image} alt='Постер к фильму' />
+      </a>
     </article>
   );
 }

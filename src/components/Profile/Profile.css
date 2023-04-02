@@ -61,6 +61,13 @@
   text-align: right;
 }
 
+.profile__error {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.18;
+  color: #FF4062;
+}
+
 .profile__input-label {
   font-weight: 500;
   font-size: 11px;
@@ -93,6 +100,10 @@
     font-size: 13px;
     line-height: 1.25;
   }
+}
+
+.profile__edit-btn_disabled {
+  opacity: .9;
 }
 
 .profile__exit-btn {

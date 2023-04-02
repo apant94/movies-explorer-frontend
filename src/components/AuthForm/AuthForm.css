@@ -84,3 +84,7 @@
     line-height: 1.25;
   }
 }
+
+.authform__submit_disabled {
+  opacity: .5;
+}

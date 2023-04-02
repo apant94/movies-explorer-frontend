@@ -9,7 +9,7 @@
   right: 0;
   bottom: 0;
   top: 0;
-  z-index: 1;
+  z-index: 99;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.5s, opacity 0.5s linear;
@@ -35,7 +35,7 @@
 }
 
 .popup__close {
-  background-image: url(../../../images/close-button.svg);
+  background-image: url(../../images/infotooltip-close-button.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;
@@ -64,14 +64,14 @@
 }
 
 .popup__tooltip-icon {
-  background-image: url(../../images/tooltip-ok.png);
+  background-image: url(../../images/infotooltip-ok.png);
   width: 120px;
   height: 120px;
   background-repeat: no-repeat;
 }
 
 .popup__tooltip-icon_error {
-  background-image: url(../../images/tooltip-error.png);
+  background-image: url(../../images/infotooltip-error.png);
   width: 120px;
   height: 120px;
   background-repeat: no-repeat;
