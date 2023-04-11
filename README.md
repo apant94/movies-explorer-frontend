@@ -2,6 +2,11 @@
 
 Сайт, на котором пользователи могут искать фильмы по ключевым словам и добавлять их в избранное в личном кабинете.
 
+## Ссылки:
++ [Макет](https://www.figma.com/file/dxveBHjdanDg2Nf3xO6MIV/Diploma?node-id=891%3A3857&t=pYxrJ3t7QAqiZWAo-1)
++ [Cайт](https://apantdiploma.nomoredomains.work/)
++ [Репозиторий с бэкендом](https://github.com/apant94/movies-explorer-api)
+
 ### Функционал:
 + Авторизация и регистрация пользователей
 + Редактирование профиля
@@ -20,18 +25,3 @@
 + Позиционирование
 + Псевдоклассы
 + Webpack
-
-## Установка и запуск проекта:
-Клонировать репозиторий: `git clone https://github.com/apant94/movies-explorer-frontend.git`
-
-Установить зависимости: `npm install`
-
-Запустить сервер: `npm run start`
-
-Запустить сервер с hot-reload: `npm run dev`
-
-## Ссылки:
-+ [Макет](https://www.figma.com/file/dxveBHjdanDg2Nf3xO6MIV/Diploma?node-id=891%3A3857&t=pYxrJ3t7QAqiZWAo-1)
-+ [Cайт](https://apantdiploma.nomoredomains.work/)
-+ [Репозиторий с бэкендом](https://github.com/apant94/movies-explorer-api)
-+ [Пулреквест](https://github.com/apant94/movies-explorer-frontend/pull/2)
