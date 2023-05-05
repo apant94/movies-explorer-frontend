@@ -3,8 +3,9 @@
 Сайт, на котором пользователи могут регистрироваться, искать фильмы по ключевым словам и добавлять их в избранное в личном кабинете.
 
 ## Ссылки:
-+ [Макет](https://www.figma.com/file/dxveBHjdanDg2Nf3xO6MIV/Diploma?node-id=891%3A3857&t=pYxrJ3t7QAqiZWAo-1)
-+ [Cайт](https://apantdiploma.nomoredomains.work/)
++ [Макет](https://www.figma.com/file/dxveBHjdanDg2Nf3xO6MIV/Diploma?node-id=891%3A3857&t=pYxrJ3t7QAqiZWAo-1)  
++ [Сайт на pages](https://apant94.github.io/movies-explorer-frontend/)
++ [Cайт на домене (пока не работает)](https://apantdiploma.nomoredomains.work/)
 + [Репозиторий с бэкендом](https://github.com/apant94/movies-explorer-api)
 
 ### Функционал:
